@@ -25,6 +25,27 @@
           <div slot="header" class="comment-header">
             <span>{{ $t('analysis.commentList') }}</span>
             <div class="comment-filter">
+              <el-button 
+                style="margin-right: 10px" 
+                type="primary" 
+                size="small"
+                @click="goToCommentSummary">
+                评论摘要
+              </el-button>
+              <el-button 
+                style="margin-right: 10px" 
+                type="primary" 
+                size="small"
+                @click="goToCommentCategory">
+                评论分类
+              </el-button>
+              <el-button 
+                style="margin-right: 10px" 
+                type="primary" 
+                size="small"
+                @click="goToCommentCompare">
+                评论对比
+              </el-button>
               <el-select v-model="scoreFilter" :placeholder="$t('analysis.filterByScore')" size="small" @change="filterComments">
                 <el-option :label="$t('analysis.allScores')" value="0"></el-option>
                 <el-option :label="$t('analysis.star1')" value="1"></el-option>
@@ -711,6 +732,31 @@ export default {
     toggleOriginalContent(comment) {
       this.$set(comment, 'showOriginal', !comment.showOriginal);
     },
+
+    goToCommentCategory() {
+      this.$router.push({
+        path: '/comment-category',
+        query: {
+          productId: this.productId
+        }
+      })
+    },
+
+    goToCommentSummary() {
+      this.$router.push({
+        path: '/comment-summary',
+        query: {
+          productId: this.productId
+        }
+      })
+    },
+
+    goToCommentCompare() {
+      this.$router.push({
+        path: '/comment-compare',
+        query: { productId: this.productId }
+      })
+    }
   }
 };
 </script>

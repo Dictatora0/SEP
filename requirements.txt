@@ -1,0 +1,10 @@
+flask==2.2.3
+flask-socketio==5.3.2
+mysql-connector-python==8.0.32
+# playwright==1.31.1 # 在生产服务器上注释掉，本地开发时取消注释并确保已安装
+pandas==1.5.3
+python-engineio==4.4.0
+python-socketio==5.8.0
+werkzeug==2.2.2
+simple-websocket==0.10.1
+flask-cors==3.0.10 

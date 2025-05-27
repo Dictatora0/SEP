@@ -10,9 +10,11 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/api': '' // 重写路径
-        },
-        ws: true,
-        secure: false
+        }
+      },
+      '/comments': {
+        target: 'http://localhost:8080', // 后端API地址
+        changeOrigin: true
       }
     }
   },

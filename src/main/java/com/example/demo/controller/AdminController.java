@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -162,6 +164,7 @@ public class AdminController {
             @RequestParam String timeRange,
             @RequestParam(required = false) String productId) {
         try {
+            log.info("获取关键词趋势，时间范围: {}, 商品ID: {}", timeRange, productId);
             if (productId == null || productId.trim().isEmpty()) {
                 return Result.error("400", "商品ID不能为空");
             }
@@ -198,21 +201,19 @@ public class AdminController {
             List<String> dates;
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime startTime;
-            if ("week".equals(timeRange)) {
-                startTime = now.minusWeeks(1);
-                dates = IntStream.range(0, 7)
-                        .mapToObj(i -> startTime.plusDays(i).toLocalDate().toString())
-                        .collect(Collectors.toList());
-            } else if ("month".equals(timeRange)) {
+            if ("month".equals(timeRange)) {
                 startTime = now.minusMonths(1);
                 dates = IntStream.range(0, 30)
                         .mapToObj(i -> startTime.plusDays(i).toLocalDate().toString())
                         .collect(Collectors.toList());
-            } else {
-                startTime = now.minusYears(1);
-                dates = IntStream.range(0, 12)
-                        .mapToObj(i -> startTime.plusMonths(i).toLocalDate().toString())
+            } else if ("halfYear".equals(timeRange)) {
+                // 半年时间范围，按月统计
+                startTime = now.minusMonths(6);
+                dates = IntStream.range(0, 6)
+                        .mapToObj(i -> startTime.plusMonths(i).format(DateTimeFormatter.ofPattern("yyyy-MM")))
                         .collect(Collectors.toList());
+            } else {
+                return Result.error("400", "无效的时间范围");
             }
 
             // 统计每个关键词在不同时间段的出现频率
@@ -221,12 +222,30 @@ public class AdminController {
                 List<Integer> frequencies = new ArrayList<>();
                 for (String date : dates) {
                     int count = 0;
+                    if ("month".equals(timeRange)) {
+                        // 按天统计
                     for (Comment comment : comments) {
                         if (comment.getCreateTime() != null &&
                             comment.getCreateTime().toLocalDate().toString().equals(date) &&
                             comment.getContent() != null &&
                             comment.getContent().contains(keyword)) {
                             count++;
+                            }
+                        }
+                    } else {
+                        // 按月统计
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+                        LocalDate monthStartDate = LocalDate.parse(date + "-01", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                        LocalDateTime monthStart = monthStartDate.atStartOfDay();
+                        LocalDateTime monthEnd = monthStart.plusMonths(1);
+                        for (Comment comment : comments) {
+                            if (comment.getCreateTime() != null &&
+                                comment.getCreateTime().isAfter(monthStart) &&
+                                comment.getCreateTime().isBefore(monthEnd) &&
+                                comment.getContent() != null &&
+                                comment.getContent().contains(keyword)) {
+                                count++;
+                            }
                         }
                     }
                     frequencies.add(count);
@@ -329,6 +348,111 @@ public class AdminController {
         } catch (Exception e) {
             log.error("获取评论质量分析失败", e);
             return Result.error("500", "获取评论质量分析失败: " + e.getMessage());
+        }
+    }
+
+    // 获取评论质量趋势
+    @GetMapping("/quality-trend")
+    public Result<?> getQualityTrend(
+            @RequestParam String timeRange,
+            @RequestParam(required = false) String productId) {
+        try {
+            log.info("获取评论质量趋势，时间范围: {}, 商品ID: {}", timeRange, productId);
+            if (productId == null || productId.trim().isEmpty()) {
+                return Result.error("400", "商品ID不能为空");
+            }
+
+            // 确保评论表存在
+            commentMapper.createCommentTableForProduct(productId);
+
+            // 获取该商品的所有评论
+            List<Comment> comments = commentMapper.selectByProductId(productId);
+            if (comments.isEmpty()) {
+                return Result.error("404", "该商品暂无评论数据");
+            }
+
+            // 根据时间范围确定日期列表
+            List<String> dates;
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime startTime;
+            if ("month".equals(timeRange)) {
+                startTime = now.minusMonths(1);
+                dates = IntStream.range(0, 30)
+                        .mapToObj(i -> startTime.plusDays(i).toLocalDate().toString())
+                        .collect(Collectors.toList());
+            } else if ("halfYear".equals(timeRange)) {
+                // 半年时间范围，按月统计
+                startTime = now.minusMonths(6);
+                dates = IntStream.range(0, 6)
+                        .mapToObj(i -> startTime.plusMonths(i).format(DateTimeFormatter.ofPattern("yyyy-MM")))
+                        .collect(Collectors.toList());
+            } else {
+                return Result.error("400", "无效的时间范围");
+            }
+
+            // 定义质量指标
+            List<String> metrics = Arrays.asList("好评率", "平均长度", "情感得分");
+            Map<String, List<Double>> trends = new HashMap<>();
+
+            // 初始化趋势数据
+            for (String metric : metrics) {
+                trends.put(metric, new ArrayList<>(Collections.nCopies(dates.size(), 0.0)));
+            }
+
+            // 统计每个日期的质量指标
+            for (int i = 0; i < dates.size(); i++) {
+                String date = dates.get(i);
+                List<Comment> dayComments;
+                if ("month".equals(timeRange)) {
+                    // 按天统计
+                    dayComments = comments.stream()
+                            .filter(c -> c.getCreateTime() != null &&
+                                    c.getCreateTime().toLocalDate().toString().equals(date))
+                            .collect(Collectors.toList());
+                } else {
+                    // 按月统计
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+                    LocalDate monthStartDate = LocalDate.parse(date + "-01", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    LocalDateTime monthStart = monthStartDate.atStartOfDay();
+                    LocalDateTime monthEnd = monthStart.plusMonths(1);
+                    dayComments = comments.stream()
+                            .filter(c -> c.getCreateTime() != null &&
+                                    c.getCreateTime().isAfter(monthStart) &&
+                                    c.getCreateTime().isBefore(monthEnd))
+                            .collect(Collectors.toList());
+                }
+
+                if (!dayComments.isEmpty()) {
+                    // 计算好评率
+                    double positiveRate = dayComments.stream()
+                            .filter(c -> c.getSentimentScore() != null && c.getSentimentScore() > 0.6)
+                            .count() * 100.0 / dayComments.size();
+                    trends.get("好评率").set(i, positiveRate);
+
+                    // 计算平均长度
+                    double avgLength = dayComments.stream()
+                            .mapToInt(c -> c.getContent() != null ? c.getContent().length() : 0)
+                            .average()
+                            .orElse(0.0);
+                    trends.get("平均长度").set(i, avgLength);
+
+                    // 计算情感得分
+                    double avgSentiment = dayComments.stream()
+                            .mapToDouble(c -> c.getSentimentScore() != null ? c.getSentimentScore() : 0.5)
+                            .average()
+                            .orElse(0.5) * 100;
+                    trends.get("情感得分").set(i, avgSentiment);
+                }
+            }
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("dates", dates);
+            data.put("metrics", metrics);
+            data.put("trends", trends);
+            return Result.success(data);
+        } catch (Exception e) {
+            log.error("获取评论质量趋势失败", e);
+            return Result.error("500", "获取评论质量趋势失败: " + e.getMessage());
         }
     }
 

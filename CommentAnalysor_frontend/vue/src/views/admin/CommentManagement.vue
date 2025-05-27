@@ -43,6 +43,9 @@
             value-format="yyyy-MM-dd">
           </el-date-picker>
         </el-form-item>
+        <el-form-item label="商品ID">
+          <el-input v-model="filterForm.productId" placeholder="输入商品ID" clearable></el-input>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleFilter">筛选</el-button>
           <el-button @click="resetFilter">重置</el-button>
@@ -178,7 +181,8 @@ export default {
       currentComment: null,
       filterForm: {
         score: '',
-        dateRange: []
+        dateRange: [],
+        productId: ''
       }
     }
   },
@@ -189,15 +193,18 @@ export default {
     async loadComments() {
       this.loading = true;
       try {
-        // 普通加载（无筛选）
+        // 普通加载（支持多条件筛选）
         const response = await axios.get('/comments', {
           params: {
             pageNum: this.currentPage,
             pageSize: this.pageSize,
             keyword: this.searchKeyword,
             score: this.filterForm.score,
+            minScore: this.filterForm.score || undefined,
+            maxScore: this.filterForm.score || undefined,
             startDate: this.filterForm.dateRange[0],
-            endDate: this.filterForm.dateRange[1]
+            endDate: this.filterForm.dateRange[1],
+            productId: this.filterForm.productId
           }
         });
         if (response.data.code === '0') {
@@ -232,30 +239,7 @@ export default {
     },
     async handleFilter() {
       this.currentPage = 1;
-      this.loading = true;
-      try {
-        if (this.filterForm.score) {
-          // 评分筛选，支持全局和单商品
-          const response = await axios.get('/comments/score', {
-            params: {
-              productId: this.productId || '',
-              minScore: this.filterForm.score,
-              maxScore: this.filterForm.score
-            }
-          });
-          if (response.data.code === '0') {
-            this.comments = response.data.data;
-            this.total = this.comments.length;
-          }
-          this.loading = false;
-          return;
-        }
-        // 其他筛选（如时间）可继续补充
-        this.loadComments();
-      } catch (error) {
-        this.$message.error('筛选评论失败');
-        this.loading = false;
-      }
+      this.loadComments();
     },
     async handleSearch() {
       this.currentPage = 1;
@@ -293,7 +277,8 @@ export default {
     resetFilter() {
       this.filterForm = {
         score: '',
-        dateRange: []
+        dateRange: [],
+        productId: ''
       };
       this.loadComments();
     },

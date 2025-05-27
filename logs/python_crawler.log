@@ -1,0 +1,42 @@
+Server initialized for threading.
+2025-05-27 23:16:51,752 - INFO - Server initialized for threading.
+2025-05-27 23:16:51,780 - INFO - 数据库连接正常
+2025-05-27 23:16:51,780 - INFO - 启动Flask-SocketIO服务，监听端口 5004
+2025-05-27 23:16:51,781 - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+ * Serving Flask app 'jd_service'
+ * Debug mode: off
+2025-05-27 23:16:51,785 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5004
+ * Running on http://10.133.135.121:5004
+2025-05-27 23:16:51,785 - INFO - [33mPress CTRL+C to quit[0m
+BIBWRiCxKZBPnXT7AAAA: Sending packet OPEN data {'sid': 'BIBWRiCxKZBPnXT7AAAA', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-27 23:16:55,715 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet OPEN data {'sid': 'BIBWRiCxKZBPnXT7AAAA', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-27 23:16:55,716 - INFO - 127.0.0.1 - - [27/May/2025 23:16:55] "GET /socket.io/?EIO=4&transport=polling&t=ntee261t HTTP/1.1" 200 -
+BIBWRiCxKZBPnXT7AAAA: Received request to upgrade to websocket
+2025-05-27 23:16:55,724 - INFO - BIBWRiCxKZBPnXT7AAAA: Received request to upgrade to websocket
+BIBWRiCxKZBPnXT7AAAA: Received packet MESSAGE data 0
+2025-05-27 23:16:55,727 - INFO - 127.0.0.1 - - [27/May/2025 23:16:55] "GET /socket.io/?EIO=4&transport=polling&t=nteefmo3&sid=BIBWRiCxKZBPnXT7AAAA HTTP/1.1" 200 -
+2025-05-27 23:16:55,727 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet MESSAGE data 0
+2025-05-27 23:16:55,729 - INFO - 客户端已连接: YHkky9Un9VXDYK9JAAAB
+BIBWRiCxKZBPnXT7AAAA: Sending packet MESSAGE data 0{"sid":"YHkky9Un9VXDYK9JAAAB"}
+2025-05-27 23:16:55,729 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet MESSAGE data 0{"sid":"YHkky9Un9VXDYK9JAAAB"}
+2025-05-27 23:16:55,729 - INFO - 127.0.0.1 - - [27/May/2025 23:16:55] "POST /socket.io/?EIO=4&transport=polling&t=nteeerrc&sid=BIBWRiCxKZBPnXT7AAAA HTTP/1.1" 200 -
+BIBWRiCxKZBPnXT7AAAA: Upgrade to websocket successful
+2025-05-27 23:16:55,731 - INFO - BIBWRiCxKZBPnXT7AAAA: Upgrade to websocket successful
+BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+2025-05-27 23:17:20,720 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+2025-05-27 23:17:20,722 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+2025-05-27 23:17:45,725 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+2025-05-27 23:17:45,726 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+2025-05-27 23:18:10,732 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+2025-05-27 23:18:10,733 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+2025-05-27 23:18:35,739 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
+BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+2025-05-27 23:18:35,739 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 

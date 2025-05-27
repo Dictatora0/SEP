@@ -6,6 +6,7 @@ import com.example.demo.entity.Comment;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CommentMapper extends BaseMapper<Comment> {
     @Select("SELECT * FROM comment_${productId} ORDER BY id DESC")
@@ -53,4 +54,13 @@ public interface CommentMapper extends BaseMapper<Comment> {
 
     @Select("SELECT COUNT(*) FROM comment_${productId}")
     int countByProductId(@Param("productId") String productId);
+
+    @Select("SELECT DISTINCT product_id as id, product_name as name FROM comment_${productId} WHERE product_id IS NOT NULL")
+    List<Map<String, Object>> selectDistinctProducts(@Param("productId") String productId);
+
+    @Select("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME LIKE 'comment_%'")
+    List<Map<String, Object>> selectAllCommentTables();
+
+    @Select("SELECT name FROM product WHERE id = #{productId}")
+    String selectProductName(@Param("productId") String productId);
 }

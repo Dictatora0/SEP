@@ -1,9 +1,3 @@
-<script setup>
-
-import Aside from "@/components/Aside.vue";
-import Header from "@/components/Header.vue";
-</script>
-
 <template>
     <nav>
       <!--  头部  -->
@@ -17,6 +11,19 @@ import Header from "@/components/Header.vue";
       </div>
     </nav>
 </template>
+
+<script>
+import Aside from "@/components/Aside.vue";
+import Header from "@/components/Header.vue";
+
+export default {
+  name: 'Layout',
+  components: {
+    Aside,
+    Header
+  }
+}
+</script>
 
 <style scoped>
 

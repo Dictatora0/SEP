@@ -88,7 +88,10 @@ export default {
         return
       }
       console.log('准备跳转到个人信息页面')
-      this.$router.push('/person').catch(err => {
+      this.$router.push({
+        path: '/person',
+        query: {from: this.$route.path}
+      }).catch(err => {
         console.error('路由跳转失败:', err)
       })
     },

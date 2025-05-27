@@ -11,29 +11,20 @@
           </el-avatar>
 <!--          {{ JSON.parse(sessionStorage.getItem("user")).nickName }}-->
           {{user?.nickName }}
-          <el-icon class="el-icon--right">
-            <arrow-down />
-          </el-icon>
+          <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="handlePersonClick">个人信息</el-dropdown-item>
-            <el-dropdown-item @click="handleLogoutClick">退出系统</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item @click.native="handlePersonClick">个人信息</el-dropdown-item>
+          <el-dropdown-item @click.native="handleLogoutClick">退出系统</el-dropdown-item>
+        </el-dropdown-menu>
       </el-dropdown>
     </div>
-
   </div>
 </template>
 
 <script>
-import { ArrowDown } from '@element-plus/icons-vue'
-import router from "@/router";
-import {createRouter as $router} from "vue-router";
 export default {
   name: 'Header',
-  props:['user'],
   data(){
     return {
       user:{}
@@ -42,7 +33,6 @@ export default {
   created() {
     let userStr = sessionStorage.getItem("user") || "{}"
     this.user = JSON.parse(userStr)
-
   },
   methods: {
     handlePersonClick() {
@@ -53,8 +43,7 @@ export default {
       console.log("点击了退出系统"); // 打印日志
       this.$router.push('/login');
     }
-  },
-  components: {ArrowDown}
+  }
 }
 </script>
 
@@ -65,7 +54,6 @@ export default {
   color: var(--el-color-primary);
   display: flex;
   align-items: center;
-
 }
 el-dropdown {
   border: none; /* 移除边框 */

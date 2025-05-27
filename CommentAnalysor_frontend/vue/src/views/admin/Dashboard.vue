@@ -30,8 +30,8 @@
             <div slot="header" class="card-header">
               <span>关键词趋势</span>
               <el-radio-group v-model="trendTimeRange" size="small" @change="loadKeywordTrend">
-                <el-radio-button label="week">本周</el-radio-button>
                 <el-radio-button label="month">本月</el-radio-button>
+                <el-radio-button label="halfYear">半年</el-radio-button>
               </el-radio-group>
             </div>
             <div class="chart-container">
@@ -43,7 +43,7 @@
 
       <!-- 评论质量分析 -->
       <el-row :gutter="20" class="chart-row">
-        <el-col :span="24">
+        <el-col :span="12">
           <el-card class="chart-card">
             <div slot="header" class="card-header">
               <span>评论质量分析</span>
@@ -57,6 +57,20 @@
             </div>
             <div class="chart-container">
               <v-chart :options="qualityOptions" autoresize />
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="12">
+          <el-card class="chart-card">
+            <div slot="header" class="card-header">
+              <span>评论质量趋势</span>
+              <el-radio-group v-model="qualityTrendRange" size="small" @change="loadQualityTrend">
+                <el-radio-button label="month">本月</el-radio-button>
+                <el-radio-button label="halfYear">半年</el-radio-button>
+              </el-radio-group>
+            </div>
+            <div class="chart-container">
+              <v-chart :options="qualityTrendOptions" autoresize />
             </div>
           </el-card>
         </el-col>
@@ -79,7 +93,7 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="productName" label="商品" width="150"></el-table-column>
+          <el-table-column prop="productId" label="商品" width="150"></el-table-column>
           <el-table-column prop="createTime" label="时间" width="180"></el-table-column>
         </el-table>
       </el-card>
@@ -102,8 +116,9 @@ export default {
     return {
       loading: false,
       selectedProduct: '',
-      trendTimeRange: 'week',
+      trendTimeRange: 'month',
       qualityMetric: 'length',
+      qualityTrendRange: 'month',
       productList: [],
       recentComments: [],
       keywordOptions: {
@@ -161,25 +176,40 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          right: 10,
-          top: 'center'
+          right: '5%',
+          top: 'middle',
+          itemWidth: 10,
+          itemHeight: 10,
+          textStyle: {
+            fontSize: 12
+          }
         },
         series: [{
           type: 'pie',
-          radius: ['50%', '70%'],
+          radius: ['40%', '70%'],
+          center: ['40%', '50%'],
           avoidLabelOverlap: false,
           label: {
-            show: false
+            show: true,
+            position: 'outside',
+            formatter: '{b}: {c} ({d}%)'
           },
           emphasis: {
             label: {
               show: true,
-              fontSize: '20',
+              fontSize: '14',
               fontWeight: 'bold'
             }
           },
           data: []
         }]
+      },
+      qualityTrendOptions: {
+        tooltip: { trigger: 'axis' },
+        legend: { data: [] },
+        xAxis: { type: 'category', data: [] },
+        yAxis: { type: 'value' },
+        series: []
       }
     }
   },
@@ -189,6 +219,7 @@ export default {
     echarts.init(document.createElement('div'));
     this.loadProductList();
     this.loadDashboardData();
+    this.loadQualityTrend();
   },
   mounted() {
     console.log('Dashboard mounted');
@@ -201,6 +232,10 @@ export default {
       this.loadKeywordData();
       this.loadKeywordTrend();
       this.loadQualityData();
+      this.loadQualityTrend();
+    },
+    qualityTrendRange() {
+      this.loadQualityTrend();
     }
   },
   methods: {
@@ -260,7 +295,7 @@ export default {
     },
     async loadKeywordTrend() {
       try {
-        console.log('开始加载关键词趋势数据');
+        console.log('开始加载关键词趋势数据，时间范围:', this.trendTimeRange);
         const response = await axios.get('/admin/keyword-trend', {
           params: { 
             timeRange: this.trendTimeRange,
@@ -300,6 +335,32 @@ export default {
       } catch (error) {
         console.error('加载质量分析失败:', error);
         this.$message.error('加载质量分析失败: ' + error.message);
+      }
+    },
+    async loadQualityTrend() {
+      try {
+        console.log('开始加载评论质量趋势数据，时间范围:', this.qualityTrendRange);
+        const response = await axios.get('/admin/quality-trend', {
+          params: {
+            timeRange: this.qualityTrendRange,
+            productId: this.selectedProduct
+          }
+        });
+        console.log('评论质量趋势数据:', response.data);
+        if (response.data.code === '0') {
+          const { dates, metrics, trends } = response.data.data;
+          this.qualityTrendOptions.xAxis.data = dates;
+          this.qualityTrendOptions.legend.data = metrics;
+          this.qualityTrendOptions.series = metrics.map(metric => ({
+            name: metric,
+            type: 'line',
+            smooth: true,
+            data: trends[metric]
+          }));
+        }
+      } catch (error) {
+        console.error('加载评论质量趋势失败:', error);
+        this.$message.error('加载评论质量趋势失败: ' + error.message);
       }
     }
   }

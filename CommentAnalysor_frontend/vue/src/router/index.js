@@ -10,6 +10,9 @@ import CommentManagement from '../views/admin/CommentManagement.vue'
 import Dashboard from '../views/admin/Dashboard.vue'
 import LayoutView from '../layout/layoutView.vue'
 import Person from '../views/Person.vue'
+import CommentCategory from '@/views/CommentCategory.vue'
+import CommentSummary from '@/views/CommentSummary.vue'
+import CommentCompare from '@/views/CommentCompare.vue'
 
 Vue.use(VueRouter)
 
@@ -76,6 +79,30 @@ const routes = [
         meta: { title: '评论管理' }
       }
     ]
+  },
+  {
+    path: '/comment-category',
+    name: 'CommentCategory',
+    component: CommentCategory,
+    meta: {
+      title: '评论分类'
+    }
+  },
+  {
+    path: '/comment-summary',
+    name: 'CommentSummary',
+    component: CommentSummary,
+    meta: {
+      title: '评论摘要'
+    }
+  },
+  {
+    path: '/comment-compare',
+    name: 'CommentCompare',
+    component: CommentCompare,
+    meta: {
+      title: '评论对比'
+    }
   }
 ]
 

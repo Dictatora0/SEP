@@ -1,0 +1,239 @@
+./start_system.sh: line 133: ./mvnw: Permission denied
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< com.example:demo2 >--------------------------
+[INFO] Building demo2 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ demo2 ---
+[INFO] Deleting /Users/lifulin/Desktop/demo2/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo2 ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 28 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ demo2 ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 32 source files with javac [debug parameters release 17] to target/classes
+[INFO] /Users/lifulin/Desktop/demo2/src/main/java/com/example/demo/controller/CommentController.java: 某些输入文件使用了未经检查或不安全的操作。
+[INFO] /Users/lifulin/Desktop/demo2/src/main/java/com/example/demo/controller/CommentController.java: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demo2 ---
+[INFO] skip non existing resourceDirectory /Users/lifulin/Desktop/demo2/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ demo2 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ demo2 ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ demo2 ---
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/file-management/3.1.0/file-management-3.1.0.jar
+Progress (1): 1.4/36 kBProgress (1): 2.8/36 kBProgress (1): 4.1/36 kBProgress (1): 5.5/36 kBProgress (1): 6.9/36 kBProgress (1): 8.3/36 kBProgress (1): 9.7/36 kBProgress (1): 11/36 kB Progress (1): 12/36 kBProgress (1): 14/36 kBProgress (1): 15/36 kBProgress (1): 17/36 kBProgress (1): 18/36 kBProgress (1): 19/36 kBProgress (1): 21/36 kBProgress (1): 22/36 kBProgress (1): 23/36 kBProgress (1): 25/36 kBProgress (1): 26/36 kBProgress (1): 28/36 kBProgress (1): 29/36 kBProgress (1): 30/36 kBProgress (1): 32/36 kBProgress (1): 33/36 kBProgress (1): 34/36 kBProgress (1): 36/36 kBProgress (1): 36 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/file-management/3.1.0/file-management-3.1.0.jar (36 kB at 46 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar
+Progress (1): 16/658 kBProgress (1): 33/658 kBProgress (1): 49/658 kBProgress (1): 66/658 kBProgress (1): 82/658 kBProgress (1): 98/658 kBProgress (1): 115/658 kBProgress (1): 131/658 kBProgress (1): 147/658 kBProgress (1): 164/658 kBProgress (1): 180/658 kBProgress (1): 197/658 kBProgress (1): 213/658 kBProgress (1): 229/658 kBProgress (1): 246/658 kBProgress (1): 262/658 kBProgress (1): 279/658 kBProgress (1): 295/658 kBProgress (1): 311/658 kBProgress (1): 328/658 kBProgress (1): 344/658 kBProgress (1): 360/658 kBProgress (1): 377/658 kBProgress (1): 393/658 kBProgress (1): 410/658 kBProgress (1): 426/658 kBProgress (1): 442/658 kBProgress (1): 459/658 kBProgress (1): 475/658 kBProgress (1): 492/658 kBProgress (1): 508/658 kBProgress (1): 524/658 kBProgress (1): 541/658 kBProgress (1): 557/658 kBProgress (1): 573/658 kBProgress (1): 585/658 kBProgress (1): 601/658 kBProgress (1): 617/658 kBProgress (1): 621/658 kBProgress (1): 638/658 kBProgress (1): 654/658 kBProgress (1): 658 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar (658 kB at 1.6 MB/s)
+[INFO] Building jar: /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.4.3:repackage (repackage) @ demo2 ---
+[INFO] Replacing main artifact /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.163 s
+[INFO] Finished at: 2025-05-27T21:34:24+08:00
+[INFO] ------------------------------------------------------------------------
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.3)
+
+2025-05-27T21:34:25.081+08:00  INFO 22647 --- [demo2] [           main] com.example.demo.Demo2Application        : Starting Demo2Application v0.0.1-SNAPSHOT using Java 23.0.2 with PID 22647 (/Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar started by lifulin in /Users/lifulin/Desktop/demo2)
+2025-05-27T21:34:25.083+08:00  INFO 22647 --- [demo2] [           main] com.example.demo.Demo2Application        : No active profile set, falling back to 1 default profile: "default"
+2025-05-27T21:34:25.909+08:00  INFO 22647 --- [demo2] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-27T21:34:25.929+08:00  INFO 22647 --- [demo2] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-27T21:34:25.929+08:00  INFO 22647 --- [demo2] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-27T21:34:25.948+08:00  INFO 22647 --- [demo2] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-27T21:34:25.948+08:00  INFO 22647 --- [demo2] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 817 ms
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.9 
+2025-05-27T21:34:26.355+08:00  WARN 22647 --- [demo2] [           main] c.b.m.core.injector.methods.Insert       : [com.example.demo.mapper.CommentCategoryMapper.insert] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.Insert]
+2025-05-27T21:34:26.359+08:00  WARN 22647 --- [demo2] [           main] c.b.m.core.injector.methods.Update       : [com.example.demo.mapper.CommentCategoryMapper.update] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.Update]
+2025-05-27T21:34:26.365+08:00  WARN 22647 --- [demo2] [           main] c.b.m.core.injector.methods.DeleteById   : [com.example.demo.mapper.CommentCategoryMapper.deleteById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.DeleteById]
+2025-05-27T21:34:26.367+08:00  WARN 22647 --- [demo2] [           main] c.b.m.core.injector.methods.SelectById   : [com.example.demo.mapper.CommentCategoryMapper.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
+2025-05-27T21:34:26.942+08:00  INFO 22647 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-05-27T21:34:26.944+08:00  INFO 22647 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2450256f]]
+2025-05-27T21:34:26.945+08:00  INFO 22647 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-05-27T21:34:26.980+08:00  INFO 22647 --- [demo2] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-27T21:34:26.989+08:00  INFO 22647 --- [demo2] [           main] com.example.demo.Demo2Application        : Started Demo2Application in 2.228 seconds (process running for 2.512)
+2025-05-27T21:35:26.958+08:00  INFO 22647 --- [demo2] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-05-27T21:54:09.574+08:00  INFO 22647 --- [demo2] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-27T21:54:11.593+08:00  INFO 22647 --- [demo2] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-27T21:54:11.596+08:00  INFO 22647 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-05-27T21:54:11.596+08:00  INFO 22647 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2450256f]]
+2025-05-27T21:54:11.596+08:00  INFO 22647 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< com.example:demo2 >--------------------------
+[INFO] Building demo2 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ demo2 ---
+[INFO] Deleting /Users/lifulin/Desktop/demo2/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo2 ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 28 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ demo2 ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 32 source files with javac [debug parameters release 17] to target/classes
+[INFO] /Users/lifulin/Desktop/demo2/src/main/java/com/example/demo/controller/CommentController.java: 某些输入文件使用了未经检查或不安全的操作。
+[INFO] /Users/lifulin/Desktop/demo2/src/main/java/com/example/demo/controller/CommentController.java: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demo2 ---
+[INFO] skip non existing resourceDirectory /Users/lifulin/Desktop/demo2/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ demo2 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ demo2 ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ demo2 ---
+[INFO] Building jar: /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.4.3:repackage (repackage) @ demo2 ---
+[INFO] Replacing main artifact /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.330 s
+[INFO] Finished at: 2025-05-27T21:54:22+08:00
+[INFO] ------------------------------------------------------------------------
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.3)
+
+2025-05-27T21:54:23.752+08:00  INFO 25294 --- [demo2] [           main] com.example.demo.Demo2Application        : Starting Demo2Application v0.0.1-SNAPSHOT using Java 23.0.2 with PID 25294 (/Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar started by lifulin in /Users/lifulin/Desktop/demo2)
+2025-05-27T21:54:23.754+08:00  INFO 25294 --- [demo2] [           main] com.example.demo.Demo2Application        : No active profile set, falling back to 1 default profile: "default"
+2025-05-27T21:54:24.555+08:00  INFO 25294 --- [demo2] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-27T21:54:24.567+08:00  INFO 25294 --- [demo2] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-27T21:54:24.567+08:00  INFO 25294 --- [demo2] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-27T21:54:24.587+08:00  INFO 25294 --- [demo2] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-27T21:54:24.588+08:00  INFO 25294 --- [demo2] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 792 ms
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.9 
+2025-05-27T21:54:25.039+08:00  WARN 25294 --- [demo2] [           main] c.b.m.core.injector.methods.Insert       : [com.example.demo.mapper.CommentCategoryMapper.insert] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.Insert]
+2025-05-27T21:54:25.042+08:00  WARN 25294 --- [demo2] [           main] c.b.m.core.injector.methods.Update       : [com.example.demo.mapper.CommentCategoryMapper.update] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.Update]
+2025-05-27T21:54:25.049+08:00  WARN 25294 --- [demo2] [           main] c.b.m.core.injector.methods.DeleteById   : [com.example.demo.mapper.CommentCategoryMapper.deleteById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.DeleteById]
+2025-05-27T21:54:25.051+08:00  WARN 25294 --- [demo2] [           main] c.b.m.core.injector.methods.SelectById   : [com.example.demo.mapper.CommentCategoryMapper.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
+2025-05-27T21:54:25.493+08:00  INFO 25294 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-05-27T21:54:25.494+08:00  INFO 25294 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@24197b13]]
+2025-05-27T21:54:25.494+08:00  INFO 25294 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-05-27T21:54:25.517+08:00  INFO 25294 --- [demo2] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-27T21:54:25.523+08:00  INFO 25294 --- [demo2] [           main] com.example.demo.Demo2Application        : Started Demo2Application in 2.05 seconds (process running for 2.484)
+2025-05-27T21:55:25.514+08:00  INFO 25294 --- [demo2] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-05-27T22:00:28.262+08:00  INFO 25294 --- [demo2] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-27T22:00:30.296+08:00  INFO 25294 --- [demo2] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-27T22:00:30.299+08:00  INFO 25294 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-05-27T22:00:30.299+08:00  INFO 25294 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@24197b13]]
+2025-05-27T22:00:30.299+08:00  INFO 25294 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< com.example:demo2 >--------------------------
+[INFO] Building demo2 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ demo2 ---
+[INFO] Deleting /Users/lifulin/Desktop/demo2/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo2 ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 28 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ demo2 ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 32 source files with javac [debug parameters release 17] to target/classes
+[INFO] /Users/lifulin/Desktop/demo2/src/main/java/com/example/demo/controller/CommentController.java: 某些输入文件使用了未经检查或不安全的操作。
+[INFO] /Users/lifulin/Desktop/demo2/src/main/java/com/example/demo/controller/CommentController.java: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demo2 ---
+[INFO] skip non existing resourceDirectory /Users/lifulin/Desktop/demo2/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ demo2 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ demo2 ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ demo2 ---
+[INFO] Building jar: /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.4.3:repackage (repackage) @ demo2 ---
+[INFO] Replacing main artifact /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.890 s
+[INFO] Finished at: 2025-05-27T22:00:41+08:00
+[INFO] ------------------------------------------------------------------------
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.3)
+
+2025-05-27T22:00:42.263+08:00  INFO 27097 --- [demo2] [           main] com.example.demo.Demo2Application        : Starting Demo2Application v0.0.1-SNAPSHOT using Java 23.0.2 with PID 27097 (/Users/lifulin/Desktop/demo2/target/demo2-0.0.1-SNAPSHOT.jar started by lifulin in /Users/lifulin/Desktop/demo2)
+2025-05-27T22:00:42.264+08:00  INFO 27097 --- [demo2] [           main] com.example.demo.Demo2Application        : No active profile set, falling back to 1 default profile: "default"
+2025-05-27T22:00:42.948+08:00  INFO 27097 --- [demo2] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-27T22:00:42.958+08:00  INFO 27097 --- [demo2] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-27T22:00:42.958+08:00  INFO 27097 --- [demo2] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-27T22:00:42.974+08:00  INFO 27097 --- [demo2] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-27T22:00:42.974+08:00  INFO 27097 --- [demo2] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 673 ms
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.9 
+2025-05-27T22:00:43.312+08:00  WARN 27097 --- [demo2] [           main] c.b.m.core.injector.methods.Insert       : [com.example.demo.mapper.CommentCategoryMapper.insert] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.Insert]
+2025-05-27T22:00:43.315+08:00  WARN 27097 --- [demo2] [           main] c.b.m.core.injector.methods.Update       : [com.example.demo.mapper.CommentCategoryMapper.update] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.Update]
+2025-05-27T22:00:43.320+08:00  WARN 27097 --- [demo2] [           main] c.b.m.core.injector.methods.DeleteById   : [com.example.demo.mapper.CommentCategoryMapper.deleteById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.DeleteById]
+2025-05-27T22:00:43.323+08:00  WARN 27097 --- [demo2] [           main] c.b.m.core.injector.methods.SelectById   : [com.example.demo.mapper.CommentCategoryMapper.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
+2025-05-27T22:00:43.756+08:00  INFO 27097 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-05-27T22:00:43.756+08:00  INFO 27097 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@24197b13]]
+2025-05-27T22:00:43.757+08:00  INFO 27097 --- [demo2] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-05-27T22:00:43.775+08:00  INFO 27097 --- [demo2] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-27T22:00:43.781+08:00  INFO 27097 --- [demo2] [           main] com.example.demo.Demo2Application        : Started Demo2Application in 1.769 seconds (process running for 2.055)
+2025-05-27T22:01:43.771+08:00  INFO 27097 --- [demo2] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-05-27T22:03:46.747+08:00  INFO 27097 --- [demo2] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-27T22:03:48.766+08:00  INFO 27097 --- [demo2] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-27T22:03:48.769+08:00  INFO 27097 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-05-27T22:03:48.770+08:00  INFO 27097 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@24197b13]]
+2025-05-27T22:03:48.770+08:00  INFO 27097 --- [demo2] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.

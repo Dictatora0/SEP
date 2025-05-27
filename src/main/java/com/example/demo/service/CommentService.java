@@ -200,10 +200,21 @@ public class CommentService {
         return Optional.empty();
     }
 
-    public Result<Page<Comment>> getCommentsFromDb(int pageNum, int pageSize, String productId) {
+    public Result<Page<Comment>> getCommentsFromDb(int pageNum, int pageSize, String productId, String startDate, String endDate, Integer minScore, Integer maxScore) {
         try {
+            java.time.LocalDateTime start = null;
+            java.time.LocalDateTime end = null;
+            if (startDate != null && !startDate.isEmpty()) {
+                start = java.time.LocalDate.parse(startDate).atStartOfDay();
+            }
+            if (endDate != null && !endDate.isEmpty()) {
+                end = java.time.LocalDate.parse(endDate).atTime(23, 59, 59);
+            }
+            final java.time.LocalDateTime finalStart = start;
+            final java.time.LocalDateTime finalEnd = end;
+            Integer min = minScore != null ? minScore : 1;
+            Integer max = maxScore != null ? maxScore : 5;
             if (productId == null || productId.trim().isEmpty()) {
-                // 查询所有商品ID
                 List<String> productIds = productMapper.selectList(null)
                         .stream().map(Product::getId).toList();
                 List<Comment> allComments = new ArrayList<>();
@@ -217,7 +228,17 @@ public class CommentService {
                         // 某个商品表不存在时跳过
                     }
                 }
-                // 按时间倒序排序
+                // 评分过滤
+                if (min != null && max != null) {
+                    allComments.removeIf(c -> c.getScore() == null || c.getScore() < min || c.getScore() > max);
+                }
+                // 时间过滤
+                if (finalStart != null) {
+                    allComments.removeIf(c -> c.getCreateTime() == null || c.getCreateTime().isBefore(finalStart));
+                }
+                if (finalEnd != null) {
+                    allComments.removeIf(c -> c.getCreateTime() == null || c.getCreateTime().isAfter(finalEnd));
+                }
                 allComments.sort((a, b) -> {
                     if (a.getCreateTime() == null || b.getCreateTime() == null) return 0;
                     return b.getCreateTime().compareTo(a.getCreateTime());
@@ -230,13 +251,28 @@ public class CommentService {
                 page.setRecords(pageRecords);
                 return Result.success(page);
             } else {
-                // 查询特定商品评论表
-                int total = commentMapper.countByProductId(productId);
+                List<Comment> all = commentMapper.selectByProductId(productId);
+                // 评分过滤
+                if (min != null && max != null) {
+                    all.removeIf(c -> c.getScore() == null || c.getScore() < min || c.getScore() > max);
+                }
+                // 时间过滤
+                if (finalStart != null) {
+                    all.removeIf(c -> c.getCreateTime() == null || c.getCreateTime().isBefore(finalStart));
+                }
+                if (finalEnd != null) {
+                    all.removeIf(c -> c.getCreateTime() == null || c.getCreateTime().isAfter(finalEnd));
+                }
+                all.sort((a, b) -> {
+                    if (a.getCreateTime() == null || b.getCreateTime() == null) return 0;
+                    return b.getCreateTime().compareTo(a.getCreateTime());
+                });
+                int total = all.size();
+                int fromIndex = Math.max(0, (pageNum - 1) * pageSize);
+                int toIndex = Math.min(fromIndex + pageSize, total);
+                List<Comment> pageRecords = fromIndex < toIndex ? all.subList(fromIndex, toIndex) : new ArrayList<>();
                 Page<Comment> page = new Page<>(pageNum, pageSize, total);
-                // 计算偏移量
-                long offset = (pageNum - 1) * pageSize;
-                List<Comment> records = commentMapper.selectByProductIdWithLimit(productId, offset, pageSize);
-                page.setRecords(records);
+                page.setRecords(pageRecords);
                 return Result.success(page);
             }
         } catch (Exception e) {

@@ -49,12 +49,14 @@ export default {
   data() {
     return {
       form: {},
-      defaultAvatar: require('@/assets/default-avatar.png')
+      defaultAvatar: require('@/assets/default-avatar.png'),
+      fromPath: '/'
     }
   },
   created() {
     let str = sessionStorage.getItem("user") || "{}";
     this.form = JSON.parse(str);
+    this.fromPath = this.$route.query.from || '/';
   },
   methods: {
     handleAvatarSuccess(res) {
@@ -80,7 +82,7 @@ export default {
               message: "更新成功"
             })
             sessionStorage.setItem("user", JSON.stringify(this.form));
-            this.$router.push('/');
+            this.$router.push(this.fromPath);
           } else {
             this.$message({
               type: 'error',
@@ -98,7 +100,7 @@ export default {
               message: "更新成功"
             })
             sessionStorage.setItem("user", JSON.stringify(this.form));
-            this.$router.push('/admin/dashboard');
+            this.$router.push(this.fromPath);
           } else {
             this.$message({
               type: 'error',
