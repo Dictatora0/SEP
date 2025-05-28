@@ -1,83 +1,101 @@
-# 京东评论爬虫系统
+# 京东商品评论分析系统
 
-这是一个基于Spring Boot、Vue和Python的京东商品评论爬虫系统，包含以下组件：
-- Python爬虫服务：负责爬取京东商品评论
-- Spring Boot后端：处理业务逻辑和API请求
-- Vue前端：提供用户界面
+本系统用于爬取京东商品评论并进行分析，包括评论分类、摘要和对比功能。
 
-## 系统要求
+## 系统架构
 
-- Java 8+
-- Python 3.8+
-- Node.js 14+
-- MySQL 5.7+
+系统采用前后端分离架构：
+- 前端：Vue.js (Element UI)
+- 后端：Spring Boot + Python Flask
+- 数据库：MySQL
 
-## 快速开始
+### 主要模块
 
-### 启动系统
+1. **Java后端**：提供API接口，调用Python爬虫服务
+2. **Python爬虫服务**：基于Flask + Socket.IO，实时爬取京东商品评论
+3. **Vue前端**：用户界面，显示爬取进度和评论内容
 
-使用以下命令启动整个系统（Python爬虫、Java后端和Vue前端）：
+## 数据库结构
 
-```bash
-./start_system.sh
-```
+- **product表**：存储商品信息
+  - id：商品ID
+  - name：商品名称
+  - created_time：创建时间
+  - updated_time：更新时间
 
-此脚本会：
-- 检查必要的系统依赖
-- 停止可能已经运行的相关进程
-- 自动配置服务端口，避免冲突
-- 启动Python爬虫服务
-- 编译并启动Java后端服务
-- 安装依赖并启动Vue前端服务
-- 创建日志记录
+- **comment_[product_id]表**：每个商品有独立的评论表
+  - id：评论ID
+  - content：评论内容
+  - nickname：用户昵称
+  - score：评分
+  - create_time：评论时间
+  - category：评论分类
 
-### 停止系统
+## 启动指南
 
-使用以下命令停止所有服务：
-
-```bash
-./stop_system.sh
-```
-
-此脚本会：
-- 优雅地尝试停止所有相关进程
-- 检查服务是否成功停止
-- 提供强制停止选项（如果需要）
-
-### 检查系统状态
-
-使用以下命令检查系统状态：
+### 1. 启动Python爬虫服务
 
 ```bash
-./check_system.sh
+# 安装依赖
+pip install flask flask-socketio flask-cors playwright mysql-connector-python
+
+# 初始化Playwright
+playwright install chromium
+
+# 启动服务
+python jd_service.py
 ```
 
-您也可以指定特定的检查项：
+服务将在 http://localhost:5004 运行
+
+### 2. 启动Java后端
 
 ```bash
-./check_system.sh status logs   # 只检查状态和日志
+# 使用Maven构建项目
+mvn clean package
+
+# 运行Spring Boot应用
+java -jar target/comment-analysor.jar
 ```
 
-可用的选项：
-- `status`：显示系统运行状态
-- `logs`：显示最近日志
-- `resources`：显示资源使用情况
-- `db`：检查数据库连接
-- `ports`：检查端口使用情况
-- `all`：执行所有检查
-- `help`：显示帮助信息
+### 3. 启动前端开发服务器
 
-## 日志文件
+```bash
+cd CommentAnalysor_frontend/vue
 
-所有日志文件位于`logs/`目录下：
-- Python爬虫：`logs/python_crawler.log`
-- Java后端：`logs/java_backend.log`
-- Vue前端：`logs/vue_frontend.log`
-- 错误日志：`logs/error.log`
+# 安装依赖
+npm install
 
-## 注意事项
+# 启动开发服务器
+npm run serve
+```
 
-1. 请确保MySQL服务已经启动且配置正确
-2. 首次运行时可能需要较长时间安装依赖
-3. 如果遇到端口冲突问题，脚本会自动尝试使用其他可用端口
-4. 京东爬虫服务需要手动扫码登录京东账号 
+## 使用流程
+
+1. 访问系统首页，登录账号
+2. 点击导航栏的"评论爬取"
+3. 输入京东商品链接，点击"开始爬取"
+4. 系统会实时显示爬取进度和评论内容
+5. 爬取完成后，可以在评论分析页面查看分析结果
+
+## 数据流向
+
+1. 用户在前端提交商品URL
+2. 前端发送请求到Java后端 `/api/crawler/start`
+3. Java后端调用Python爬虫服务 `/api/crawl`
+4. Python爬虫启动爬取过程
+5. 爬虫实时通过WebSocket推送评论和进度到前端
+6. 爬虫同时将评论保存到MySQL数据库
+
+## 技术实现要点
+
+1. **实时数据推送**：使用Socket.IO实现爬虫进度和评论的实时推送
+2. **动态表创建**：根据商品ID动态创建评论表
+3. **异步爬虫**：后台异步运行爬虫，不阻塞API响应
+4. **无状态设计**：前端可以随时连接WebSocket获取最新状态
+
+## 常见问题排查
+
+1. **WebSocket连接失败**：检查防火墙设置和网络连接
+2. **数据库连接错误**：检查MySQL配置和权限
+3. **爬虫运行失败**：查看Python服务日志，可能是浏览器驱动问题 

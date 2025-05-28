@@ -9,14 +9,14 @@ import mysql.connector
 from flask_socketio import SocketIO
 import threading
 from datetime import datetime
-import random
 from flask_cors import CORS
+from pathlib import Path
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('jd_crawler')
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='CommentAnalysor_frontend/vue/dist', static_url_path='')
 # 启用CORS跨域资源共享
 CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['SECRET_KEY'] = 'jd_crawler_secret'
@@ -33,18 +33,21 @@ db_config = {
 # 创建爬虫类的扩展，增加实时消息推送功能
 class WebSocketJDScraper(JDCommentScraper):
     def __init__(self, product_id, product_name, headless=True, test_mode=True):
-        super().__init__(headless=headless, test_mode=test_mode)
+        # 确保有一个独立的user_data_dir路径
+        user_data_dir = Path(__file__).parent / "jd_user_data" / f"profile_{product_id}"
+        user_data_dir.mkdir(parents=True, exist_ok=True)
+        super().__init__(headless=headless, test_mode=test_mode, user_data_dir=str(user_data_dir))
         self.product_id = product_id
         self.product_name = product_name
         self.total_comments_count = 0
     
     # 重写拦截评论方法，添加实时推送
     async def intercept_comments(self, route, request):
-        await route.continue_()
         try:
-            response = await route.fetch()
+            await route.continue_()
+            response = await request.response()
             
-            if response.ok:
+            if response and response.ok:
                 try:
                     body = await response.text()
                     
@@ -60,7 +63,7 @@ class WebSocketJDScraper(JDCommentScraper):
                         comments = data['comments']
                         self.total_comments_count += len(comments)
                         logger.info(f"已爬取 {self.total_comments_count} 条评论")
-                        socketio.emit('progress', {'status': 'crawling', 'count': self.total_comments_count, 'product_id': self.product_id})
+                        socketio.emit('progress', {'status': 'crawling', 'count': self.total_comments_count})
                         
                         for comment in comments:
                             if comment.get('content'):  # 只添加有内容的评论
@@ -79,12 +82,11 @@ class WebSocketJDScraper(JDCommentScraper):
                                 
                                 # 实时推送新评论
                                 socketio.emit('new_comment', comment_data)
-                                logger.debug(f"推送新评论: {comment_data['nickname']} - {comment_data['content'][:30]}...")
                                 
                                 # 避免重复添加相同评论
                                 content_exists = any(c['content'] == comment_data['content'] and 
-                                                    c['nickname'] == comment_data['nickname'] 
-                                                    for c in self.captured_comments)
+                                                   c['nickname'] == comment_data['nickname'] 
+                                                   for c in self.captured_comments)
                                 if not content_exists:
                                     self.captured_comments.append(comment_data)
                                     # 立即保存到数据库
@@ -98,71 +100,62 @@ class WebSocketJDScraper(JDCommentScraper):
             logger.error(traceback.format_exc())
             socketio.emit('error', {'message': f'拦截评论请求失败: {str(e)}'})
 
-    # 重写load_comments方法，确保测试模式下也能发送SocketIO消息
-    async def load_comments(self, product_url, max_pages=3):
-        """在测试模式下，确保模拟数据也会通过WebSocket发送"""
-        # 调用父类的load_comments方法
-        comments = await super().load_comments(product_url, max_pages)
-        
-        # 如果是测试模式，确保评论通过WebSocket发送
-        if self.test_mode:
-            logger.info("测试模式：通过WebSocket发送模拟评论")
-            
-            # 发送初始进度
-            socketio.emit('progress', {'status': 'starting', 'product_id': self.product_id})
-            await asyncio.sleep(1)  # 稍微延迟，模拟爬取过程
-            
-            # 逐条发送评论，模拟实时爬取效果
-            for i, comment in enumerate(self.captured_comments):
-                # 确保评论有product_id和product_name
-                comment_data = {
-                    **comment,
-                    'product_id': self.product_id,
-                    'product_name': self.product_name
-                }
-                
-                # 发送评论和进度
-                socketio.emit('new_comment', comment_data)
-                self.total_comments_count += 1
-                socketio.emit('progress', {
-                    'status': 'crawling', 
-                    'count': self.total_comments_count, 
-                    'product_id': self.product_id
-                })
-                
-                # 保存到数据库
-                save_comment_to_db(comment_data)
-                
-                # 添加随机延迟，模拟真实爬取速度
-                await asyncio.sleep(random.uniform(0.5, 2.0))
-            
-            # 发送完成消息
-            socketio.emit('progress', {
-                'status': 'completed', 
-                'count': len(self.captured_comments),
-                'product_id': self.product_id
-            })
-        
-        return comments
-
 # 保存评论到数据库
 def save_comment_to_db(comment_data):
     try:
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor()
         
-        # 准备SQL语句
-        sql = """INSERT INTO comment 
-               (product_id, content, nickname, score, create_time) 
-               VALUES (%s, %s, %s, %s, %s)"""
-               
+        # 检查产品是否存在，不存在则插入
+        check_product_sql = "SELECT id FROM product WHERE id = %s"
+        cursor.execute(check_product_sql, (comment_data['product_id'],))
+        product_exists = cursor.fetchone()
+        
+        if not product_exists:
+            # 插入产品信息
+            insert_product_sql = """INSERT INTO product 
+                                  (id, name, created_time, updated_time) 
+                                  VALUES (%s, %s, NOW(), NOW())"""
+            cursor.execute(insert_product_sql, (
+                comment_data['product_id'],
+                comment_data['product_name']
+            ))
+            conn.commit()
+            logger.info(f"商品已保存到数据库: {comment_data['product_id']} - {comment_data['product_name']}")
+        
+        # 检查评论表是否存在，不存在则创建
+        table_name = f"comment_{comment_data['product_id']}"
+        check_table_sql = f"SHOW TABLES LIKE '{table_name}'"
+        cursor.execute(check_table_sql)
+        table_exists = cursor.fetchone()
+        
+        if not table_exists:
+            # 创建评论表
+            create_table_sql = f"""
+            CREATE TABLE `{table_name}` (
+              `id` int NOT NULL AUTO_INCREMENT,
+              `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+              `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+              `score` int DEFAULT NULL,
+              `create_time` datetime DEFAULT NULL,
+              `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+              PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+            """
+            cursor.execute(create_table_sql)
+            conn.commit()
+            logger.info(f"评论表已创建: {table_name}")
+        
         # 转换日期格式
         creation_time = datetime.strptime(comment_data['creationTime'], 
                                          '%Y-%m-%d %H:%M:%S')
         
-        # 执行插入
-        cursor.execute(sql, (
-            comment_data['product_id'],
+        # 插入评论数据
+        insert_comment_sql = f"""INSERT INTO {table_name} 
+                               (content, nickname, score, create_time) 
+                               VALUES (%s, %s, %s, %s)"""
+        
+        cursor.execute(insert_comment_sql, (
             comment_data['content'],
             comment_data['nickname'],
             comment_data['score'],
@@ -170,7 +163,7 @@ def save_comment_to_db(comment_data):
         ))
         
         conn.commit()
-        logger.info(f"评论已保存到数据库: {comment_data['nickname']} - ID: {cursor.lastrowid}")
+        logger.info(f"评论已保存到数据库: {comment_data['nickname']}")
         conn.close()
         
     except Exception as e:
@@ -197,18 +190,18 @@ def run_crawler(product_url, product_id, product_name):
     always_test_mode = False
     
     async def run():
+        scraper = None
         try:
             logger.info(f"开始爬取商品: {product_id} - {product_name}")
             socketio.emit('progress', {'status': 'starting', 'product_id': product_id})
             
-            # 初始化爬虫，使用测试模式
-            scraper = await WebSocketJDScraper(product_id, product_name, headless=True, test_mode=always_test_mode).setup()
+            # 初始化爬虫实例
+            scraper = WebSocketJDScraper(product_id, product_name, headless=True, test_mode=always_test_mode)
+            # 设置浏览器
+            await scraper.setup()
             
             # 开始爬取评论
             await scraper.load_comments(product_url)
-            
-            # 结束爬取
-            await scraper.close()
             
             logger.info(f"商品 {product_id} 爬取完成，共获取 {len(scraper.captured_comments)} 条评论")
             socketio.emit('progress', {
@@ -216,11 +209,16 @@ def run_crawler(product_url, product_id, product_name):
                 'count': len(scraper.captured_comments),
                 'product_id': product_id
             })
-            
         except Exception as e:
             logger.error(f"爬虫执行错误: {e}")
             logger.error(traceback.format_exc())
             socketio.emit('error', {'message': f'爬虫执行错误: {str(e)}'})
+        finally:
+            if scraper:
+                try:
+                    await scraper.close()
+                except Exception as e:
+                    logger.error(f"关闭爬虫时出错: {e}")
     
     # 在事件循环中运行异步任务
     loop = asyncio.new_event_loop()
@@ -266,6 +264,10 @@ def handle_disconnect():
 
 @app.route('/')
 def index():
+    return app.send_static_file('index.html')
+
+@app.route('/api/status')
+def status():
     return jsonify({"status": "服务正常运行", "version": "1.0"})
 
 if __name__ == '__main__':
@@ -276,4 +278,4 @@ if __name__ == '__main__':
         logger.error("数据库连接失败，服务可能无法正常工作")
         
     logger.info("启动Flask-SocketIO服务，监听端口 5004")
-    socketio.run(app, host='0.0.0.0', port=5004, debug=False, allow_unsafe_werkzeug=True) 
+    socketio.run(app, host='0.0.0.0', port=5004, debug=False, allow_unsafe_werkzeug=True)

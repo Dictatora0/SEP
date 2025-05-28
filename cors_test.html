@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS测试</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 10px 0;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CORS测试工具</h1>
+    
+    <button onclick="testDirectFetch()">测试直接请求</button>
+    <button onclick="testWithCredentials()">测试携带凭证请求</button>
+    <button onclick="testOptionsRequest()">测试OPTIONS请求</button>
+    
+    <div id="result"></div>
+    
+    <script>
+        function showResult(title, data) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<h3>${title}</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+        
+        function showError(title, error) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<h3>${title}</h3><pre style="color:red">${error}</pre>`;
+        }
+        
+        async function testDirectFetch() {
+            try {
+                const response = await fetch('http://localhost:8080/api/status');
+                const data = await response.json();
+                showResult('直接请求结果', data);
+            } catch (error) {
+                showError('直接请求失败', error.toString());
+                console.error(error);
+            }
+        }
+        
+        async function testWithCredentials() {
+            try {
+                const response = await fetch('http://localhost:8080/user/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: 'testuser',
+                        password: '123456'
+                    }),
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                showResult('带凭证请求结果', data);
+            } catch (error) {
+                showError('带凭证请求失败', error.toString());
+                console.error(error);
+            }
+        }
+        
+        async function testOptionsRequest() {
+            try {
+                // 使用自定义方法触发预检请求
+                const xhr = new XMLHttpRequest();
+                xhr.open('OPTIONS', 'http://localhost:8080/user/login');
+                xhr.setRequestHeader('Access-Control-Request-Method', 'POST');
+                xhr.setRequestHeader('Access-Control-Request-Headers', 'Content-Type');
+                
+                xhr.onload = function() {
+                    showResult('OPTIONS请求结果', {
+                        status: xhr.status,
+                        statusText: xhr.statusText,
+                        headers: {
+                            'Access-Control-Allow-Origin': xhr.getResponseHeader('Access-Control-Allow-Origin'),
+                            'Access-Control-Allow-Methods': xhr.getResponseHeader('Access-Control-Allow-Methods'),
+                            'Access-Control-Allow-Headers': xhr.getResponseHeader('Access-Control-Allow-Headers'),
+                            'Access-Control-Allow-Credentials': xhr.getResponseHeader('Access-Control-Allow-Credentials')
+                        }
+                    });
+                };
+                
+                xhr.onerror = function(error) {
+                    showError('OPTIONS请求失败', 'Network error occurred');
+                };
+                
+                xhr.send();
+            } catch (error) {
+                showError('OPTIONS请求失败', error.toString());
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html> 

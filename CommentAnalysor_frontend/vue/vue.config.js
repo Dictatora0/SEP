@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   devServer: {
-    port: 8081, // 修改为8081
+    port: 8084, // 修改为实际运行的端口8084
     open: true, // 自动打开浏览器
     proxy: {
       '/api': {
@@ -12,8 +12,22 @@ module.exports = {
           '^/api': '' // 重写路径
         }
       },
-      '/comments': {
-        target: 'http://localhost:8080', // 后端API地址
+      '/user': {
+        target: 'http://localhost:8080', // 用户API
+        changeOrigin: true,
+        pathRewrite: {
+          '^/user': '/user' // 保持路径不变
+        }
+      },
+      '/admin': {
+        target: 'http://localhost:8080', // 管理员API
+        changeOrigin: true,
+        pathRewrite: {
+          '^/admin': '/admin' // 保持路径不变
+        }
+      },
+      '/crawler': {
+        target: 'http://localhost:5004', // 爬虫服务地址
         changeOrigin: true
       }
     }

@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const request = axios.create({
     baseURL: 'http://localhost:8080',  // 后端接口地址
-    timeout: 5000  // 请求超时时间
+    timeout: 5000,  // 请求超时时间
+    withCredentials: true // 允许跨域携带cookie
 })
 
 // 请求拦截器
@@ -12,6 +13,10 @@ request.interceptors.request.use(config => {
     if (user.token) {
         config.headers['token'] = user.token
     }
+    
+    // 设置通用请求头
+    config.headers['Content-Type'] = 'application/json'
+    
     return config
 }, error => {
     return Promise.reject(error)
@@ -22,9 +27,9 @@ request.interceptors.response.use(
     response => {
         const res = response.data
         // 如果返回的状态码不是0，说明接口请求有误
-        if (res.code !== '0') {
+        if (res.code !== '0' && res.code !== 0) {
             // 401: 未登录或token过期
-            if (res.code === '401') {
+            if (res.code === '401' || res.code === 401) {
                 // 清除用户信息
                 sessionStorage.removeItem('user')
                 // 跳转到登录页

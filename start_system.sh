@@ -14,6 +14,9 @@ NC='\033[0m' # 无颜色
 PROJECT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 echo -e "${BLUE}项目根目录: $PROJECT_ROOT${NC}"
 
+# 前端项目路径
+VUE_DIR="$PROJECT_ROOT/CommentAnalysor_frontend/vue"
+
 # 日志目录
 LOG_DIR="$PROJECT_ROOT/logs"
 mkdir -p "$LOG_DIR"
@@ -104,8 +107,8 @@ update_python_service_port() {
             echo -e "${YELLOW}警告: 无法在Python服务文件中找到端口配置${NC}" | tee -a "$ERROR_LOG"
         fi
         
-        # 更新vue1/src/components/CommentCrawler.vue文件
-        COMMENT_CRAWLER_FILE="$PROJECT_ROOT/vue1/src/components/CommentCrawler.vue"
+        # 更新Vue组件中的WebSocket连接端口
+        COMMENT_CRAWLER_FILE="$VUE_DIR/src/views/CommentCrawler.vue"
         if [ -f "$COMMENT_CRAWLER_FILE" ]; then
             if grep -q "this.socket = io('http://localhost:[0-9]*'" "$COMMENT_CRAWLER_FILE"; then
                 sed -i.bak "s/this.socket = io('http:\/\/localhost:[0-9]*'/this.socket = io('http:\/\/localhost:5004'/g" "$COMMENT_CRAWLER_FILE"
@@ -150,7 +153,18 @@ start_python_crawler() {
     
     # 安装依赖
     echo "安装Python依赖..."
-    pip install -r "$PROJECT_ROOT/requirements.txt" >> "$PYTHON_LOG" 2>&1
+    if [ -f "$PROJECT_ROOT/requirements.txt" ]; then
+        pip install -r "$PROJECT_ROOT/requirements.txt" >> "$PYTHON_LOG" 2>&1
+    else
+        echo "未找到requirements.txt，安装基本依赖..."
+        pip install flask flask-socketio flask-cors playwright mysql-connector-python >> "$PYTHON_LOG" 2>&1
+        
+        # 安装Playwright浏览器
+        if command -v playwright &> /dev/null; then
+            echo "安装Playwright浏览器..."
+            playwright install chromium >> "$PYTHON_LOG" 2>&1
+        fi
+    fi
     
     # 启动Python爬虫服务
     echo "启动爬虫服务..."
@@ -193,19 +207,29 @@ start_python_crawler() {
 start_vue_frontend() {
     echo -e "${BLUE}启动Vue前端服务...${NC}"
     
+    # 检查Vue项目目录是否存在
+    if [ ! -d "$VUE_DIR" ]; then
+        echo -e "${RED}错误: 前端目录不存在: $VUE_DIR${NC}" | tee -a "$ERROR_LOG"
+        return 1
+    fi
+    
     # 进入Vue项目目录
-    cd "$PROJECT_ROOT/vue1" || {
-        echo -e "${RED}错误: 无法进入Vue项目目录${NC}" | tee -a "$ERROR_LOG"
+    cd "$VUE_DIR" || {
+        echo -e "${RED}错误: 无法进入Vue项目目录: $VUE_DIR${NC}" | tee -a "$ERROR_LOG"
         return 1
     }
     
-    # 确保node_modules/.bin中的文件有执行权限
-    echo "设置执行权限..."
-    chmod -R +x ./node_modules/.bin/
+    echo "当前工作目录: $(pwd)"
     
     # 安装Vue依赖
     echo "安装Vue依赖..."
     npm install --legacy-peer-deps >> "$VUE_LOG" 2>&1
+    
+    # 确保node_modules/.bin中的文件有执行权限
+    if [ -d "node_modules/.bin" ]; then
+        echo "设置执行权限..."
+        chmod -R +x ./node_modules/.bin/
+    fi
     
     # 启动Vue开发服务器
     echo "启动Vue开发服务器..."
@@ -225,14 +249,20 @@ start_vue_frontend() {
     sleep 10
     if ps -p $VUE_PID > /dev/null; then
         echo -e "${GREEN}Vue前端服务成功启动，PID: $VUE_PID${NC}"
+        
+        # 尝试检测Vue服务监听的端口
+        VUE_PORT=$(grep -o "Local:.*http://localhost:[0-9]*" "$VUE_LOG" | grep -o "[0-9]*$" | head -1)
+        if [ -z "$VUE_PORT" ]; then
+            VUE_PORT=8080  # 默认端口
+        fi
+        
         # 检查端口
         sleep 2
-        if lsof -i :9876 | grep LISTEN > /dev/null; then
-            echo -e "${GREEN}Vue服务端口 9876 正在监听${NC}"
+        if lsof -i :$VUE_PORT | grep LISTEN > /dev/null; then
+            echo -e "${GREEN}Vue服务端口 $VUE_PORT 正在监听${NC}"
+            echo -e "${GREEN}前端访问地址: http://localhost:$VUE_PORT${NC}"
         else
-            echo -e "${YELLOW}警告: Vue服务可能启动失败，端口9876未监听${NC}" | tee -a "$ERROR_LOG"
-            echo "查看日志: $VUE_LOG"
-            return 1
+            echo -e "${YELLOW}警告: Vue服务端口 $VUE_PORT 未在监听${NC}" | tee -a "$ERROR_LOG"
         fi
     else
         echo -e "${RED}错误: Vue前端服务启动失败${NC}" | tee -a "$ERROR_LOG"
@@ -272,11 +302,18 @@ check_system_status() {
         if ps -p "$VUE_PID" > /dev/null; then
             echo -e "${GREEN}Vue前端服务运行中 (PID: $VUE_PID)${NC}"
             
+            # 尝试检测Vue服务监听的端口
+            VUE_PORT=$(grep -o "Local:.*http://localhost:[0-9]*" "$VUE_LOG" | grep -o "[0-9]*$" | head -1)
+            if [ -z "$VUE_PORT" ]; then
+                VUE_PORT=8080  # 默认端口
+            fi
+            
             # 检查端口
-            if lsof -i :9876 | grep LISTEN > /dev/null; then
-                echo -e "${GREEN}Vue服务端口 9876 正在监听${NC}"
+            if lsof -i :$VUE_PORT | grep LISTEN > /dev/null; then
+                echo -e "${GREEN}Vue服务端口 $VUE_PORT 正在监听${NC}"
+                echo -e "${GREEN}前端访问地址: http://localhost:$VUE_PORT${NC}"
             else
-                echo -e "${YELLOW}警告: Vue服务端口 9876 未在监听${NC}" | tee -a "$ERROR_LOG"
+                echo -e "${YELLOW}警告: Vue服务端口 $VUE_PORT 未在监听${NC}" | tee -a "$ERROR_LOG"
             fi
         else
             echo -e "${RED}错误: Vue前端服务未运行${NC}" | tee -a "$ERROR_LOG"
@@ -336,7 +373,12 @@ main() {
     echo ""
     show_logs_help
     
-    echo -e "\n${BLUE}系统已启动完成，请访问 http://localhost:9876 使用系统${NC}"
+    VUE_PORT=$(grep -o "Local:.*http://localhost:[0-9]*" "$VUE_LOG" | grep -o "[0-9]*$" | head -1)
+    if [ -z "$VUE_PORT" ]; then
+        VUE_PORT=8080  # 默认端口
+    fi
+    
+    echo -e "\n${BLUE}系统已启动完成，请访问 http://localhost:$VUE_PORT 使用系统${NC}"
 }
 
 # 执行主函数

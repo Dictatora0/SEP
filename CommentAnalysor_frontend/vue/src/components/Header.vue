@@ -10,7 +10,22 @@
         </el-option>
       </el-select>
     </div>
-    <div style="flex: 1"></div>
+    <div style="flex: 1; display: flex; justify-content: center;">
+      <!-- 添加导航菜单 -->
+      <el-menu 
+        :default-active="activeIndex" 
+        mode="horizontal" 
+        @select="handleSelect"
+        background-color="transparent"
+        text-color="#333"
+        active-text-color="#409EFF">
+        <el-menu-item index="home">首页</el-menu-item>
+        <el-menu-item index="crawler">评论爬取</el-menu-item>
+        <el-menu-item index="comment-category">评论分类</el-menu-item>
+        <el-menu-item index="comment-summary">评论摘要</el-menu-item>
+        <el-menu-item index="comment-compare">评论对比</el-menu-item>
+      </el-menu>
+    </div>
     <div style="width: 150px; display: flex; align-items: center; justify-content: flex-end;">
       <template v-if="user">
         <el-dropdown @command="handleCommand">
@@ -50,7 +65,8 @@ export default {
       languages: [
         { value: 'zh', label: '中文' },
         { value: 'en', label: 'English' }
-      ]
+      ],
+      activeIndex: 'home' // 默认激活的菜单项
     }
   },
   created() {
@@ -61,11 +77,21 @@ export default {
       this.currentLang = savedLang
       this.$i18n.locale = savedLang
     }
+    
+    // 根据当前路由设置激活的菜单项
+    this.setActiveMenu()
   },
   watch: {
     user: {
       handler(newVal) {
         console.log('Header组件用户信息变化:', newVal)
+      },
+      immediate: true
+    },
+    '$route': {
+      handler() {
+        // 路由变化时更新激活的菜单项
+        this.setActiveMenu()
       },
       immediate: true
     }
@@ -77,6 +103,31 @@ export default {
         this.handlePersonClick()
       } else if (command === 'logout') {
         this.handleLogoutClick()
+      }
+    },
+    handleSelect(key) {
+      // 导航菜单选择处理
+      if (key === 'home') {
+        this.$router.push('/')
+      } else if (key === 'crawler') {
+        this.$router.push('/crawler')
+      } else {
+        this.$router.push(`/${key}`)
+      }
+    },
+    setActiveMenu() {
+      // 根据当前路由设置激活的菜单项
+      const path = this.$route.path
+      if (path === '/' || path === '/home') {
+        this.activeIndex = 'home'
+      } else if (path === '/crawler') {
+        this.activeIndex = 'crawler'
+      } else if (path.includes('comment-category')) {
+        this.activeIndex = 'comment-category'
+      } else if (path.includes('comment-summary')) {
+        this.activeIndex = 'comment-summary'
+      } else if (path.includes('comment-compare')) {
+        this.activeIndex = 'comment-compare'
       }
     },
     handlePersonClick() {
@@ -130,5 +181,14 @@ export default {
 .el-dropdown-link {
   border: none;
   outline: none;
+}
+
+.el-menu {
+  border-bottom: none !important;
+}
+
+.el-menu--horizontal>.el-menu-item {
+  height: 49px;
+  line-height: 49px;
 }
 </style>

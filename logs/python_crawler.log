@@ -1,42 +1,391 @@
 Server initialized for threading.
-2025-05-27 23:16:51,752 - INFO - Server initialized for threading.
-2025-05-27 23:16:51,780 - INFO - 数据库连接正常
-2025-05-27 23:16:51,780 - INFO - 启动Flask-SocketIO服务，监听端口 5004
-2025-05-27 23:16:51,781 - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-05-28 02:57:21,181 - INFO - Server initialized for threading.
+2025-05-28 02:57:21,199 - INFO - 数据库连接正常
+2025-05-28 02:57:21,199 - INFO - 启动Flask-SocketIO服务，监听端口 5004
+2025-05-28 02:57:21,199 - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
  * Serving Flask app 'jd_service'
  * Debug mode: off
-2025-05-27 23:16:51,785 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-05-28 02:57:21,202 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5004
- * Running on http://10.133.135.121:5004
-2025-05-27 23:16:51,785 - INFO - [33mPress CTRL+C to quit[0m
-BIBWRiCxKZBPnXT7AAAA: Sending packet OPEN data {'sid': 'BIBWRiCxKZBPnXT7AAAA', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
-2025-05-27 23:16:55,715 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet OPEN data {'sid': 'BIBWRiCxKZBPnXT7AAAA', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
-2025-05-27 23:16:55,716 - INFO - 127.0.0.1 - - [27/May/2025 23:16:55] "GET /socket.io/?EIO=4&transport=polling&t=ntee261t HTTP/1.1" 200 -
-BIBWRiCxKZBPnXT7AAAA: Received request to upgrade to websocket
-2025-05-27 23:16:55,724 - INFO - BIBWRiCxKZBPnXT7AAAA: Received request to upgrade to websocket
-BIBWRiCxKZBPnXT7AAAA: Received packet MESSAGE data 0
-2025-05-27 23:16:55,727 - INFO - 127.0.0.1 - - [27/May/2025 23:16:55] "GET /socket.io/?EIO=4&transport=polling&t=nteefmo3&sid=BIBWRiCxKZBPnXT7AAAA HTTP/1.1" 200 -
-2025-05-27 23:16:55,727 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet MESSAGE data 0
-2025-05-27 23:16:55,729 - INFO - 客户端已连接: YHkky9Un9VXDYK9JAAAB
-BIBWRiCxKZBPnXT7AAAA: Sending packet MESSAGE data 0{"sid":"YHkky9Un9VXDYK9JAAAB"}
-2025-05-27 23:16:55,729 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet MESSAGE data 0{"sid":"YHkky9Un9VXDYK9JAAAB"}
-2025-05-27 23:16:55,729 - INFO - 127.0.0.1 - - [27/May/2025 23:16:55] "POST /socket.io/?EIO=4&transport=polling&t=nteeerrc&sid=BIBWRiCxKZBPnXT7AAAA HTTP/1.1" 200 -
-BIBWRiCxKZBPnXT7AAAA: Upgrade to websocket successful
-2025-05-27 23:16:55,731 - INFO - BIBWRiCxKZBPnXT7AAAA: Upgrade to websocket successful
-BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-2025-05-27 23:17:20,720 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
-2025-05-27 23:17:20,722 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
-BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-2025-05-27 23:17:45,725 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
-2025-05-27 23:17:45,726 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
-BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-2025-05-27 23:18:10,732 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
-2025-05-27 23:18:10,733 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
-BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-2025-05-27 23:18:35,739 - INFO - BIBWRiCxKZBPnXT7AAAA: Sending packet PING data None
-BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
-2025-05-27 23:18:35,739 - INFO - BIBWRiCxKZBPnXT7AAAA: Received packet PONG data 
+ * Running on http://192.168.219.252:5004
+2025-05-28 02:57:21,202 - INFO - [33mPress CTRL+C to quit[0m
+4rnmwP7go310Z1PvAAAA: Sending packet OPEN data {'sid': '4rnmwP7go310Z1PvAAAA', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:57:21,972 - INFO - 4rnmwP7go310Z1PvAAAA: Sending packet OPEN data {'sid': '4rnmwP7go310Z1PvAAAA', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:57:21,973 - INFO - 127.0.0.1 - - [28/May/2025 02:57:21] "GET /socket.io/?EIO=4&transport=polling&t=vovu9jmc HTTP/1.1" 200 -
+4rnmwP7go310Z1PvAAAA: Received packet MESSAGE data 0
+2025-05-28 02:57:21,977 - INFO - 4rnmwP7go310Z1PvAAAA: Received packet MESSAGE data 0
+4rnmwP7go310Z1PvAAAA: Received request to upgrade to websocket
+2025-05-28 02:57:21,978 - INFO - 4rnmwP7go310Z1PvAAAA: Received request to upgrade to websocket
+2025-05-28 02:57:21,980 - INFO - 客户端已连接: rNiuXoCb5aGztDkmAAAB
+4rnmwP7go310Z1PvAAAA: Sending packet MESSAGE data 0{"sid":"rNiuXoCb5aGztDkmAAAB"}
+2025-05-28 02:57:21,981 - INFO - 4rnmwP7go310Z1PvAAAA: Sending packet MESSAGE data 0{"sid":"rNiuXoCb5aGztDkmAAAB"}
+2025-05-28 02:57:21,981 - INFO - 127.0.0.1 - - [28/May/2025 02:57:21] "GET /socket.io/?EIO=4&transport=polling&t=vovufa39&sid=4rnmwP7go310Z1PvAAAA HTTP/1.1" 200 -
+2025-05-28 02:57:21,981 - INFO - 127.0.0.1 - - [28/May/2025 02:57:21] "POST /socket.io/?EIO=4&transport=polling&t=vovuevt2&sid=4rnmwP7go310Z1PvAAAA HTTP/1.1" 200 -
+4rnmwP7go310Z1PvAAAA: Upgrade to websocket successful
+2025-05-28 02:57:21,984 - INFO - 4rnmwP7go310Z1PvAAAA: Upgrade to websocket successful
+2025-05-28 02:57:44,435 - INFO - 127.0.0.1 - - [28/May/2025 02:57:44] "[33mGET /crawler HTTP/1.1[0m" 404 -
+4rnmwP7go310Z1PvAAAA: Unexpected error "", closing connection
+2025-05-28 02:57:44,447 - INFO - 4rnmwP7go310Z1PvAAAA: Unexpected error "", closing connection
+2025-05-28 02:57:44,447 - INFO - 客户端已断开连接: rNiuXoCb5aGztDkmAAAB
+2025-05-28 02:57:44,447 - INFO - 127.0.0.1 - - [28/May/2025 02:57:44] "GET /socket.io/?EIO=4&transport=websocket&sid=4rnmwP7go310Z1PvAAAA HTTP/1.1" 200 -
+5RsW-aByGn7yyda7AAAC: Sending packet OPEN data {'sid': '5RsW-aByGn7yyda7AAAC', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:57:51,467 - INFO - 5RsW-aByGn7yyda7AAAC: Sending packet OPEN data {'sid': '5RsW-aByGn7yyda7AAAC', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:57:51,467 - INFO - 127.0.0.1 - - [28/May/2025 02:57:51] "GET /socket.io/?EIO=4&transport=polling&t=vpilhjkx HTTP/1.1" 200 -
+5RsW-aByGn7yyda7AAAC: Received packet MESSAGE data 0
+2025-05-28 02:57:51,479 - INFO - 5RsW-aByGn7yyda7AAAC: Received packet MESSAGE data 0
+5RsW-aByGn7yyda7AAAC: Received request to upgrade to websocket
+2025-05-28 02:57:51,480 - INFO - 客户端已连接: 5qAOo7SZzk2MuELrAAAD
+5RsW-aByGn7yyda7AAAC: Sending packet MESSAGE data 0{"sid":"5qAOo7SZzk2MuELrAAAD"}
+2025-05-28 02:57:51,479 - INFO - 5RsW-aByGn7yyda7AAAC: Received request to upgrade to websocket
+2025-05-28 02:57:51,481 - INFO - 127.0.0.1 - - [28/May/2025 02:57:51] "GET /socket.io/?EIO=4&transport=polling&t=vpilwqi7&sid=5RsW-aByGn7yyda7AAAC HTTP/1.1" 200 -
+2025-05-28 02:57:51,481 - INFO - 5RsW-aByGn7yyda7AAAC: Sending packet MESSAGE data 0{"sid":"5qAOo7SZzk2MuELrAAAD"}
+2025-05-28 02:57:51,482 - INFO - 127.0.0.1 - - [28/May/2025 02:57:51] "POST /socket.io/?EIO=4&transport=polling&t=vpilwsvs&sid=5RsW-aByGn7yyda7AAAC HTTP/1.1" 200 -
+5RsW-aByGn7yyda7AAAC: Upgrade to websocket successful
+2025-05-28 02:57:51,484 - INFO - 5RsW-aByGn7yyda7AAAC: Upgrade to websocket successful
+2025-05-28 02:57:53,815 - INFO - 127.0.0.1 - - [28/May/2025 02:57:53] "OPTIONS /api/crawl HTTP/1.1" 200 -
+2025-05-28 02:57:53,827 - INFO - 商品 100156519007 已添加到爬取队列，当前队列大小: 1
+2025-05-28 02:57:53,828 - INFO - 127.0.0.1 - - [28/May/2025 02:57:53] "POST /api/crawl HTTP/1.1" 200 -
+2025-05-28 02:57:53,828 - INFO - 开始爬取商品: 100156519007 - 
+emitting event "progress" to all [/]
+2025-05-28 02:57:53,829 - INFO - emitting event "progress" to all [/]
+5RsW-aByGn7yyda7AAAC: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 02:57:53,829 - INFO - 5RsW-aByGn7yyda7AAAC: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 02:57:53,831 - INFO - 初始化浏览器...
+2025-05-28 02:57:54,760 - INFO - 开始爬取评论...
+2025-05-28 02:57:54,761 - INFO - 测试模式：生成模拟评论数据
+2025-05-28 02:57:54,761 - INFO - 商品 100156519007 爬取完成，共获取 10 条评论
+emitting event "progress" to all [/]
+2025-05-28 02:57:54,761 - INFO - emitting event "progress" to all [/]
+5RsW-aByGn7yyda7AAAC: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 02:57:54,761 - INFO - 5RsW-aByGn7yyda7AAAC: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 02:57:54,761 - INFO - 安全关闭爬虫资源...
+2025-05-28 02:57:54,761 - INFO - 开始安全关闭浏览器资源
+2025-05-28 02:57:54,761 - INFO - 关闭页面
+2025-05-28 02:57:54,767 - INFO - 关闭浏览器上下文
+2025-05-28 02:57:54,792 - INFO - 浏览器资源已安全释放
+2025-05-28 02:57:54,792 - INFO - 爬虫资源已关闭
+2025-05-28 02:57:54,792 - INFO - 商品 100156519007 爬取任务已从活动任务集合中移除，当前队列大小: 0
+5RsW-aByGn7yyda7AAAC: Received packet MESSAGE data 1
+2025-05-28 02:57:57,804 - INFO - 5RsW-aByGn7yyda7AAAC: Received packet MESSAGE data 1
+2025-05-28 02:57:57,805 - INFO - 客户端已断开连接: 5qAOo7SZzk2MuELrAAAD
+5RsW-aByGn7yyda7AAAC: Unexpected error "", closing connection
+2025-05-28 02:57:57,809 - INFO - 5RsW-aByGn7yyda7AAAC: Unexpected error "", closing connection
+2025-05-28 02:57:57,810 - INFO - 127.0.0.1 - - [28/May/2025 02:57:57] "GET /socket.io/?EIO=4&transport=websocket&sid=5RsW-aByGn7yyda7AAAC HTTP/1.1" 200 -
+ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet OPEN data {'sid': 'ZLgQ2Ms-1x_ZTyDRAAAE', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:00,321 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet OPEN data {'sid': 'ZLgQ2Ms-1x_ZTyDRAAAE', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:00,321 - INFO - 127.0.0.1 - - [28/May/2025 02:58:00] "GET /socket.io/?EIO=4&transport=polling&t=vppferj9 HTTP/1.1" 200 -
+ZLgQ2Ms-1x_ZTyDRAAAE: Received packet MESSAGE data 0
+2025-05-28 02:58:00,327 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Received packet MESSAGE data 0
+ZLgQ2Ms-1x_ZTyDRAAAE: Received request to upgrade to websocket
+2025-05-28 02:58:00,330 - INFO - 客户端已连接: gsUP-Grj9ddbPUJ0AAAF
+ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet MESSAGE data 0{"sid":"gsUP-Grj9ddbPUJ0AAAF"}
+2025-05-28 02:58:00,328 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Received request to upgrade to websocket
+2025-05-28 02:58:00,330 - INFO - 127.0.0.1 - - [28/May/2025 02:58:00] "GET /socket.io/?EIO=4&transport=polling&t=vppfoy7j&sid=ZLgQ2Ms-1x_ZTyDRAAAE HTTP/1.1" 200 -
+2025-05-28 02:58:00,330 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet MESSAGE data 0{"sid":"gsUP-Grj9ddbPUJ0AAAF"}
+2025-05-28 02:58:00,331 - INFO - 127.0.0.1 - - [28/May/2025 02:58:00] "POST /socket.io/?EIO=4&transport=polling&t=vppfoact&sid=ZLgQ2Ms-1x_ZTyDRAAAE HTTP/1.1" 200 -
+2025-05-28 02:58:00,334 - INFO - 127.0.0.1 - - [28/May/2025 02:58:00] "GET /socket.io/?EIO=4&transport=polling&t=vppfwm69&sid=ZLgQ2Ms-1x_ZTyDRAAAE HTTP/1.1" 200 -
+ZLgQ2Ms-1x_ZTyDRAAAE: Upgrade to websocket successful
+2025-05-28 02:58:00,336 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Upgrade to websocket successful
+2025-05-28 02:58:02,931 - INFO - 127.0.0.1 - - [28/May/2025 02:58:02] "OPTIONS /api/crawl HTTP/1.1" 200 -
+2025-05-28 02:58:02,941 - INFO - 商品 100156519007 已添加到爬取队列，当前队列大小: 1
+2025-05-28 02:58:02,942 - INFO - 127.0.0.1 - - [28/May/2025 02:58:02] "POST /api/crawl HTTP/1.1" 200 -
+2025-05-28 02:58:02,943 - INFO - 开始爬取商品: 100156519007 - 
+emitting event "progress" to all [/]
+2025-05-28 02:58:02,943 - INFO - emitting event "progress" to all [/]
+ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 02:58:02,943 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 02:58:02,944 - INFO - 初始化浏览器...
+2025-05-28 02:58:03,436 - INFO - 开始爬取评论...
+2025-05-28 02:58:03,436 - INFO - 测试模式：生成模拟评论数据
+2025-05-28 02:58:03,436 - INFO - 商品 100156519007 爬取完成，共获取 10 条评论
+emitting event "progress" to all [/]
+2025-05-28 02:58:03,437 - INFO - emitting event "progress" to all [/]
+ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 02:58:03,437 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 02:58:03,437 - INFO - 安全关闭爬虫资源...
+2025-05-28 02:58:03,437 - INFO - 开始安全关闭浏览器资源
+2025-05-28 02:58:03,438 - INFO - 关闭页面
+2025-05-28 02:58:03,448 - INFO - 关闭浏览器上下文
+2025-05-28 02:58:03,464 - INFO - 浏览器资源已安全释放
+2025-05-28 02:58:03,464 - INFO - 爬虫资源已关闭
+2025-05-28 02:58:03,464 - INFO - 商品 100156519007 爬取任务已从活动任务集合中移除，当前队列大小: 0
+2025-05-28 02:58:08,267 - INFO - 127.0.0.1 - - [28/May/2025 02:58:08] "[33mGET /crawler HTTP/1.1[0m" 404 -
+ZLgQ2Ms-1x_ZTyDRAAAE: Unexpected error "", closing connection
+2025-05-28 02:58:08,272 - INFO - ZLgQ2Ms-1x_ZTyDRAAAE: Unexpected error "", closing connection
+2025-05-28 02:58:08,273 - INFO - 客户端已断开连接: gsUP-Grj9ddbPUJ0AAAF
+2025-05-28 02:58:08,273 - INFO - 127.0.0.1 - - [28/May/2025 02:58:08] "GET /socket.io/?EIO=4&transport=websocket&sid=ZLgQ2Ms-1x_ZTyDRAAAE HTTP/1.1" 200 -
+2025-05-28 02:58:08,714 - INFO - 127.0.0.1 - - [28/May/2025 02:58:08] "[33mGET /crawler HTTP/1.1[0m" 404 -
+2025-05-28 02:58:10,786 - INFO - 127.0.0.1 - - [28/May/2025 02:58:10] "[33mGET /crawler HTTP/1.1[0m" 404 -
+rmUUxEAy8kxSfxvgAAAG: Sending packet OPEN data {'sid': 'rmUUxEAy8kxSfxvgAAAG', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:22,849 - INFO - rmUUxEAy8kxSfxvgAAAG: Sending packet OPEN data {'sid': 'rmUUxEAy8kxSfxvgAAAG', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:22,850 - INFO - 127.0.0.1 - - [28/May/2025 02:58:22] "GET /socket.io/?EIO=4&transport=polling&t=vq6t8zuz HTTP/1.1" 200 -
+rmUUxEAy8kxSfxvgAAAG: Received packet MESSAGE data 0
+2025-05-28 02:58:22,865 - INFO - rmUUxEAy8kxSfxvgAAAG: Received packet MESSAGE data 0
+rmUUxEAy8kxSfxvgAAAG: Received request to upgrade to websocket
+2025-05-28 02:58:22,866 - INFO - 客户端已连接: AwU5Uh9xwk2p5VOyAAAH
+2025-05-28 02:58:22,865 - INFO - rmUUxEAy8kxSfxvgAAAG: Received request to upgrade to websocket
+rmUUxEAy8kxSfxvgAAAG: Sending packet MESSAGE data 0{"sid":"AwU5Uh9xwk2p5VOyAAAH"}
+2025-05-28 02:58:22,867 - INFO - 127.0.0.1 - - [28/May/2025 02:58:22] "GET /socket.io/?EIO=4&transport=polling&t=vq6tqk7l&sid=rmUUxEAy8kxSfxvgAAAG HTTP/1.1" 200 -
+2025-05-28 02:58:22,866 - INFO - rmUUxEAy8kxSfxvgAAAG: Sending packet MESSAGE data 0{"sid":"AwU5Uh9xwk2p5VOyAAAH"}
+2025-05-28 02:58:22,868 - INFO - 127.0.0.1 - - [28/May/2025 02:58:22] "POST /socket.io/?EIO=4&transport=polling&t=vq6tp025&sid=rmUUxEAy8kxSfxvgAAAG HTTP/1.1" 200 -
+2025-05-28 02:58:22,870 - INFO - 127.0.0.1 - - [28/May/2025 02:58:22] "GET /socket.io/?EIO=4&transport=polling&t=vq6tx7qr&sid=rmUUxEAy8kxSfxvgAAAG HTTP/1.1" 200 -
+rmUUxEAy8kxSfxvgAAAG: Upgrade to websocket successful
+2025-05-28 02:58:22,873 - INFO - rmUUxEAy8kxSfxvgAAAG: Upgrade to websocket successful
+rmUUxEAy8kxSfxvgAAAG: Received packet MESSAGE data 1
+2025-05-28 02:58:24,895 - INFO - rmUUxEAy8kxSfxvgAAAG: Received packet MESSAGE data 1
+2025-05-28 02:58:24,895 - INFO - 客户端已断开连接: AwU5Uh9xwk2p5VOyAAAH
+rmUUxEAy8kxSfxvgAAAG: Unexpected error "", closing connection
+2025-05-28 02:58:24,898 - INFO - rmUUxEAy8kxSfxvgAAAG: Unexpected error "", closing connection
+2025-05-28 02:58:24,898 - INFO - 127.0.0.1 - - [28/May/2025 02:58:24] "GET /socket.io/?EIO=4&transport=websocket&sid=rmUUxEAy8kxSfxvgAAAG HTTP/1.1" 200 -
+1Pblrj2AQAyVTWuZAAAI: Sending packet OPEN data {'sid': '1Pblrj2AQAyVTWuZAAAI', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:38,860 - INFO - 1Pblrj2AQAyVTWuZAAAI: Sending packet OPEN data {'sid': '1Pblrj2AQAyVTWuZAAAI', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:38,862 - INFO - 127.0.0.1 - - [28/May/2025 02:58:38] "GET /socket.io/?EIO=4&transport=polling&t=vqj5yuhb HTTP/1.1" 200 -
+1Pblrj2AQAyVTWuZAAAI: Received packet MESSAGE data 0
+2025-05-28 02:58:38,891 - INFO - 1Pblrj2AQAyVTWuZAAAI: Received packet MESSAGE data 0
+1Pblrj2AQAyVTWuZAAAI: Received request to upgrade to websocket
+2025-05-28 02:58:38,892 - INFO - 客户端已连接: tKmr9R1ypILHaq7wAAAJ
+2025-05-28 02:58:38,891 - INFO - 1Pblrj2AQAyVTWuZAAAI: Received request to upgrade to websocket
+1Pblrj2AQAyVTWuZAAAI: Sending packet MESSAGE data 0{"sid":"tKmr9R1ypILHaq7wAAAJ"}
+2025-05-28 02:58:38,895 - INFO - 127.0.0.1 - - [28/May/2025 02:58:38] "GET /socket.io/?EIO=4&transport=polling&t=vqj6s64l&sid=1Pblrj2AQAyVTWuZAAAI HTTP/1.1" 200 -
+2025-05-28 02:58:38,894 - INFO - 1Pblrj2AQAyVTWuZAAAI: Sending packet MESSAGE data 0{"sid":"tKmr9R1ypILHaq7wAAAJ"}
+2025-05-28 02:58:38,896 - INFO - 127.0.0.1 - - [28/May/2025 02:58:38] "POST /socket.io/?EIO=4&transport=polling&t=vqj6r06n&sid=1Pblrj2AQAyVTWuZAAAI HTTP/1.1" 200 -
+2025-05-28 02:58:38,928 - INFO - 127.0.0.1 - - [28/May/2025 02:58:38] "GET /socket.io/?EIO=4&transport=polling&t=vqj7s3lm&sid=1Pblrj2AQAyVTWuZAAAI HTTP/1.1" 200 -
+1Pblrj2AQAyVTWuZAAAI: Upgrade to websocket successful
+2025-05-28 02:58:38,933 - INFO - 1Pblrj2AQAyVTWuZAAAI: Upgrade to websocket successful
+1Pblrj2AQAyVTWuZAAAI: Received packet MESSAGE data 1
+2025-05-28 02:58:39,830 - INFO - 1Pblrj2AQAyVTWuZAAAI: Received packet MESSAGE data 1
+2025-05-28 02:58:39,831 - INFO - 客户端已断开连接: tKmr9R1ypILHaq7wAAAJ
+1Pblrj2AQAyVTWuZAAAI: Unexpected error "", closing connection
+2025-05-28 02:58:39,834 - INFO - 1Pblrj2AQAyVTWuZAAAI: Unexpected error "", closing connection
+2025-05-28 02:58:39,835 - INFO - 127.0.0.1 - - [28/May/2025 02:58:39] "GET /socket.io/?EIO=4&transport=websocket&sid=1Pblrj2AQAyVTWuZAAAI HTTP/1.1" 200 -
+2025-05-28 02:58:40,371 - INFO - 127.0.0.1 - - [28/May/2025 02:58:40] "[33mGET /crawler HTTP/1.1[0m" 404 -
+2025-05-28 02:58:41,772 - INFO - 127.0.0.1 - - [28/May/2025 02:58:41] "[33mGET /crawler HTTP/1.1[0m" 404 -
+NFM7v5FRw5ry4zzRAAAK: Sending packet OPEN data {'sid': 'NFM7v5FRw5ry4zzRAAAK', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:49,622 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet OPEN data {'sid': 'NFM7v5FRw5ry4zzRAAAK', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 02:58:49,622 - INFO - 127.0.0.1 - - [28/May/2025 02:58:49] "GET /socket.io/?EIO=4&transport=polling&t=vqrgrrsq HTTP/1.1" 200 -
+NFM7v5FRw5ry4zzRAAAK: Received request to upgrade to websocket
+2025-05-28 02:58:49,631 - INFO - NFM7v5FRw5ry4zzRAAAK: Received request to upgrade to websocket
+NFM7v5FRw5ry4zzRAAAK: Received packet MESSAGE data 0
+2025-05-28 02:58:49,633 - INFO - NFM7v5FRw5ry4zzRAAAK: Received packet MESSAGE data 0
+2025-05-28 02:58:49,635 - INFO - 客户端已连接: h43FCmlHJNJiVVS2AAAL
+NFM7v5FRw5ry4zzRAAAK: Sending packet MESSAGE data 0{"sid":"h43FCmlHJNJiVVS2AAAL"}
+2025-05-28 02:58:49,636 - INFO - 127.0.0.1 - - [28/May/2025 02:58:49] "GET /socket.io/?EIO=4&transport=polling&t=vqrh6njv&sid=NFM7v5FRw5ry4zzRAAAK HTTP/1.1" 200 -
+2025-05-28 02:58:49,636 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet MESSAGE data 0{"sid":"h43FCmlHJNJiVVS2AAAL"}
+2025-05-28 02:58:49,637 - INFO - 127.0.0.1 - - [28/May/2025 02:58:49] "POST /socket.io/?EIO=4&transport=polling&t=vqrh6aen&sid=NFM7v5FRw5ry4zzRAAAK HTTP/1.1" 200 -
+NFM7v5FRw5ry4zzRAAAK: Upgrade to websocket successful
+2025-05-28 02:58:49,639 - INFO - NFM7v5FRw5ry4zzRAAAK: Upgrade to websocket successful
+2025-05-28 02:58:51,335 - INFO - 127.0.0.1 - - [28/May/2025 02:58:51] "OPTIONS /api/crawl HTTP/1.1" 200 -
+2025-05-28 02:58:51,347 - INFO - 商品 100156519007 已添加到爬取队列，当前队列大小: 1
+2025-05-28 02:58:51,348 - INFO - 127.0.0.1 - - [28/May/2025 02:58:51] "POST /api/crawl HTTP/1.1" 200 -
+2025-05-28 02:58:51,349 - INFO - 开始爬取商品: 100156519007 - 
+emitting event "progress" to all [/]
+2025-05-28 02:58:51,349 - INFO - emitting event "progress" to all [/]
+NFM7v5FRw5ry4zzRAAAK: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 02:58:51,349 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 02:58:51,350 - INFO - 初始化浏览器...
+2025-05-28 02:58:52,301 - INFO - 开始爬取评论...
+2025-05-28 02:58:52,302 - INFO - 测试模式：生成模拟评论数据
+2025-05-28 02:58:52,302 - INFO - 商品 100156519007 爬取完成，共获取 10 条评论
+emitting event "progress" to all [/]
+2025-05-28 02:58:52,302 - INFO - emitting event "progress" to all [/]
+NFM7v5FRw5ry4zzRAAAK: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 02:58:52,303 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 02:58:52,303 - INFO - 安全关闭爬虫资源...
+2025-05-28 02:58:52,303 - INFO - 开始安全关闭浏览器资源
+2025-05-28 02:58:52,303 - INFO - 关闭页面
+2025-05-28 02:58:52,320 - INFO - 关闭浏览器上下文
+2025-05-28 02:58:52,343 - INFO - 浏览器资源已安全释放
+2025-05-28 02:58:52,343 - INFO - 爬虫资源已关闭
+2025-05-28 02:58:52,343 - INFO - 商品 100156519007 爬取任务已从活动任务集合中移除，当前队列大小: 0
+NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+2025-05-28 02:59:14,626 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+2025-05-28 02:59:14,627 - INFO - NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+2025-05-28 02:59:39,632 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+2025-05-28 02:59:39,633 - INFO - NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+2025-05-28 03:00:04,637 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+2025-05-28 03:00:04,638 - INFO - NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+2025-05-28 03:00:29,641 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+2025-05-28 03:00:29,643 - INFO - NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+2025-05-28 03:00:54,648 - INFO - NFM7v5FRw5ry4zzRAAAK: Sending packet PING data None
+NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+2025-05-28 03:00:54,649 - INFO - NFM7v5FRw5ry4zzRAAAK: Received packet PONG data 
+bdrrMO5uyz0s-oSjAAAM: Sending packet OPEN data {'sid': 'bdrrMO5uyz0s-oSjAAAM', 'upgrades': [], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 03:01:04,427 - INFO - bdrrMO5uyz0s-oSjAAAM: Sending packet OPEN data {'sid': 'bdrrMO5uyz0s-oSjAAAM', 'upgrades': [], 'pingTimeout': 20000, 'pingInterval': 25000}
+bdrrMO5uyz0s-oSjAAAM: Received request to upgrade to websocket
+2025-05-28 03:01:04,428 - INFO - bdrrMO5uyz0s-oSjAAAM: Received request to upgrade to websocket
+NFM7v5FRw5ry4zzRAAAK: Unexpected error "", closing connection
+2025-05-28 03:01:04,434 - INFO - NFM7v5FRw5ry4zzRAAAK: Unexpected error "", closing connection
+bdrrMO5uyz0s-oSjAAAM: Upgrade to websocket successful
+2025-05-28 03:01:04,434 - INFO - bdrrMO5uyz0s-oSjAAAM: Upgrade to websocket successful
+2025-05-28 03:01:04,436 - INFO - 客户端已断开连接: h43FCmlHJNJiVVS2AAAL
+2025-05-28 03:01:04,437 - INFO - 127.0.0.1 - - [28/May/2025 03:01:04] "GET /socket.io/?EIO=4&transport=websocket&sid=NFM7v5FRw5ry4zzRAAAK HTTP/1.1" 200 -
+bdrrMO5uyz0s-oSjAAAM: Received packet MESSAGE data 0
+2025-05-28 03:01:04,470 - INFO - bdrrMO5uyz0s-oSjAAAM: Received packet MESSAGE data 0
+2025-05-28 03:01:04,471 - INFO - 客户端已连接: LI3Fc2cXsWb8b4GoAAAN
+bdrrMO5uyz0s-oSjAAAM: Sending packet MESSAGE data 0{"sid":"LI3Fc2cXsWb8b4GoAAAN"}
+2025-05-28 03:01:04,471 - INFO - bdrrMO5uyz0s-oSjAAAM: Sending packet MESSAGE data 0{"sid":"LI3Fc2cXsWb8b4GoAAAN"}
+2025-05-28 03:01:10,986 - INFO - 127.0.0.1 - - [28/May/2025 03:01:10] "[33mGET /crawler HTTP/1.1[0m" 404 -
+bdrrMO5uyz0s-oSjAAAM: Unexpected error "", closing connection
+2025-05-28 03:01:10,991 - INFO - bdrrMO5uyz0s-oSjAAAM: Unexpected error "", closing connection
+2025-05-28 03:01:10,991 - INFO - 客户端已断开连接: LI3Fc2cXsWb8b4GoAAAN
+2025-05-28 03:01:10,992 - INFO - 127.0.0.1 - - [28/May/2025 03:01:10] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-05-28 03:01:10,994 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 335, in run_wsgi
+    execute(self.server.app)
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 327, in execute
+    write(b"")
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 252, in write
+    assert status_set is not None, "write() before start_response"
+AssertionError: write() before start_response
+2025-05-28 03:01:11,719 - INFO - 127.0.0.1 - - [28/May/2025 03:01:11] "[33mGET /crawler HTTP/1.1[0m" 404 -
+dQgFDYx0WT9fGegbAAAO: Sending packet OPEN data {'sid': 'dQgFDYx0WT9fGegbAAAO', 'upgrades': [], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 03:01:44,044 - INFO - dQgFDYx0WT9fGegbAAAO: Sending packet OPEN data {'sid': 'dQgFDYx0WT9fGegbAAAO', 'upgrades': [], 'pingTimeout': 20000, 'pingInterval': 25000}
+dQgFDYx0WT9fGegbAAAO: Received request to upgrade to websocket
+2025-05-28 03:01:44,044 - INFO - dQgFDYx0WT9fGegbAAAO: Received request to upgrade to websocket
+dQgFDYx0WT9fGegbAAAO: Upgrade to websocket successful
+2025-05-28 03:01:44,045 - INFO - dQgFDYx0WT9fGegbAAAO: Upgrade to websocket successful
+dQgFDYx0WT9fGegbAAAO: Received packet MESSAGE data 0
+2025-05-28 03:01:44,050 - INFO - dQgFDYx0WT9fGegbAAAO: Received packet MESSAGE data 0
+2025-05-28 03:01:44,051 - INFO - 客户端已连接: q23dcaD4kMh1H-B-AAAP
+dQgFDYx0WT9fGegbAAAO: Sending packet MESSAGE data 0{"sid":"q23dcaD4kMh1H-B-AAAP"}
+2025-05-28 03:01:44,052 - INFO - dQgFDYx0WT9fGegbAAAO: Sending packet MESSAGE data 0{"sid":"q23dcaD4kMh1H-B-AAAP"}
+2025-05-28 03:01:53,578 - INFO - 127.0.0.1 - - [28/May/2025 03:01:53] "OPTIONS /api/crawl HTTP/1.1" 200 -
+2025-05-28 03:01:53,587 - INFO - 商品 100156519007 已添加到爬取队列，当前队列大小: 1
+2025-05-28 03:01:53,588 - INFO - 127.0.0.1 - - [28/May/2025 03:01:53] "POST /api/crawl HTTP/1.1" 200 -
+2025-05-28 03:01:53,589 - INFO - 开始爬取商品: 100156519007 - 
+emitting event "progress" to all [/]
+2025-05-28 03:01:53,589 - INFO - emitting event "progress" to all [/]
+dQgFDYx0WT9fGegbAAAO: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 03:01:53,589 - INFO - dQgFDYx0WT9fGegbAAAO: Sending packet MESSAGE data 2["progress",{"status":"starting","product_id":"100156519007"}]
+2025-05-28 03:01:53,590 - INFO - 初始化浏览器...
+2025-05-28 03:01:54,458 - INFO - 开始爬取评论...
+2025-05-28 03:01:54,458 - INFO - 测试模式：生成模拟评论数据
+2025-05-28 03:01:54,459 - INFO - 商品 100156519007 爬取完成，共获取 10 条评论
+emitting event "progress" to all [/]
+2025-05-28 03:01:54,459 - INFO - emitting event "progress" to all [/]
+dQgFDYx0WT9fGegbAAAO: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 03:01:54,460 - INFO - dQgFDYx0WT9fGegbAAAO: Sending packet MESSAGE data 2["progress",{"status":"completed","count":10,"product_id":"100156519007"}]
+2025-05-28 03:01:54,460 - INFO - 安全关闭爬虫资源...
+2025-05-28 03:01:54,460 - INFO - 开始安全关闭浏览器资源
+2025-05-28 03:01:54,460 - INFO - 关闭页面
+2025-05-28 03:01:54,477 - INFO - 关闭浏览器上下文
+2025-05-28 03:01:54,502 - INFO - 浏览器资源已安全释放
+2025-05-28 03:01:54,502 - INFO - 爬虫资源已关闭
+2025-05-28 03:01:54,502 - INFO - 商品 100156519007 爬取任务已从活动任务集合中移除，当前队列大小: 0
+dQgFDYx0WT9fGegbAAAO: Unexpected error "", closing connection
+2025-05-28 03:01:59,033 - INFO - dQgFDYx0WT9fGegbAAAO: Unexpected error "", closing connection
+2025-05-28 03:01:59,035 - INFO - 客户端已断开连接: q23dcaD4kMh1H-B-AAAP
+2025-05-28 03:01:59,035 - INFO - 127.0.0.1 - - [28/May/2025 03:01:59] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-05-28 03:01:59,036 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 335, in run_wsgi
+    execute(self.server.app)
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 327, in execute
+    write(b"")
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 252, in write
+    assert status_set is not None, "write() before start_response"
+AssertionError: write() before start_response
+3xtus7jkfoPSO5zLAAAQ: Sending packet OPEN data {'sid': '3xtus7jkfoPSO5zLAAAQ', 'upgrades': [], 'pingTimeout': 20000, 'pingInterval': 25000}
+2025-05-28 03:01:59,947 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet OPEN data {'sid': '3xtus7jkfoPSO5zLAAAQ', 'upgrades': [], 'pingTimeout': 20000, 'pingInterval': 25000}
+3xtus7jkfoPSO5zLAAAQ: Received request to upgrade to websocket
+2025-05-28 03:01:59,947 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received request to upgrade to websocket
+3xtus7jkfoPSO5zLAAAQ: Upgrade to websocket successful
+2025-05-28 03:01:59,950 - INFO - 3xtus7jkfoPSO5zLAAAQ: Upgrade to websocket successful
+3xtus7jkfoPSO5zLAAAQ: Received packet MESSAGE data 0
+2025-05-28 03:01:59,951 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet MESSAGE data 0
+2025-05-28 03:01:59,953 - INFO - 客户端已连接: W1A2Pg3WomrmQtpiAAAR
+3xtus7jkfoPSO5zLAAAQ: Sending packet MESSAGE data 0{"sid":"W1A2Pg3WomrmQtpiAAAR"}
+2025-05-28 03:01:59,953 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet MESSAGE data 0{"sid":"W1A2Pg3WomrmQtpiAAAR"}
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 03:02:24,949 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 03:02:24,950 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 03:18:36,297 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 03:18:36,299 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 04:23:42,445 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 04:23:42,446 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 04:24:07,449 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 04:24:07,450 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 04:41:53,317 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 04:41:53,319 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 05:03:16,966 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 05:03:16,967 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 06:04:03,054 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 06:04:03,055 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 06:04:28,063 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 06:04:28,065 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 07:05:14,188 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 07:05:14,189 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 07:58:37,350 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 07:58:37,351 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 07:59:02,360 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 07:59:02,361 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 07:59:27,370 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 07:59:27,371 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 08:06:13,797 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 08:06:13,798 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 08:24:13,972 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 08:24:13,973 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 08:24:38,974 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 08:24:38,976 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 09:07:11,113 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 09:07:11,115 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+2025-05-28 09:07:36,117 - INFO - 3xtus7jkfoPSO5zLAAAQ: Sending packet PING data None
+3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+2025-05-28 09:07:36,119 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet PONG data 
+3xtus7jkfoPSO5zLAAAQ: Received packet MESSAGE data 1
+2025-05-28 09:35:25,779 - INFO - 3xtus7jkfoPSO5zLAAAQ: Received packet MESSAGE data 1
+2025-05-28 09:35:25,783 - INFO - 客户端已断开连接: W1A2Pg3WomrmQtpiAAAR
+3xtus7jkfoPSO5zLAAAQ: Unexpected error "", closing connection
+2025-05-28 09:35:25,784 - INFO - 3xtus7jkfoPSO5zLAAAQ: Unexpected error "", closing connection
+2025-05-28 09:35:25,786 - INFO - 127.0.0.1 - - [28/May/2025 09:35:25] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-05-28 09:35:25,788 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 335, in run_wsgi
+    execute(self.server.app)
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 327, in execute
+    write(b"")
+  File "/Users/lifulin/.pyenv/versions/3.10.13/lib/python3.10/site-packages/werkzeug/serving.py", line 252, in write
+    assert status_set is not None, "write() before start_response"
+AssertionError: write() before start_response

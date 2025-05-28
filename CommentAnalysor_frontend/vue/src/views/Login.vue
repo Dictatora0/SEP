@@ -43,8 +43,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: 'Login',
   data() {
@@ -73,32 +71,42 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
-          const loginUrl = this.loginForm.role === 'admin' ? '/admin/login' : '/user/login';
+          // 使用完整URL访问后端API
+          const loginUrl = this.loginForm.role === 'admin' 
+            ? 'http://localhost:8080/admin/login' 
+            : 'http://localhost:8080/user/login';
           
-          axios.post(loginUrl, this.loginForm).then(res => {
-            if (res.data.code === '0') {
-              // 保存用户信息到sessionStorage
-              const userData = res.data.data;
-              userData.role = this.loginForm.role; // 添加角色标识
-              console.log('登录成功，保存的用户信息:', userData);
-              sessionStorage.setItem('user', JSON.stringify(userData));
-              this.$message.success('登录成功');
-              
-              // 根据角色跳转到不同页面
-              if (this.loginForm.role === 'admin') {
-                this.$router.push('/admin/dashboard');
+          this.$http.post(loginUrl, this.loginForm, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            withCredentials: true
+          })
+            .then(res => {
+              if (res.data.code === '0' || res.data.code === 0) {
+                // 保存用户信息到sessionStorage
+                const userData = res.data.data;
+                userData.role = this.loginForm.role; // 添加角色标识
+                console.log('登录成功，保存的用户信息:', userData);
+                sessionStorage.setItem('user', JSON.stringify(userData));
+                this.$message.success('登录成功');
+                
+                // 根据角色跳转到不同页面
+                if (this.loginForm.role === 'admin') {
+                  this.$router.push('/admin/dashboard');
+                } else {
+                  this.$router.push('/');
+                }
               } else {
-                this.$router.push('/');
+                this.$message.error(res.data.msg || '登录失败');
               }
-            } else {
-              this.$message.error(res.data.msg || '登录失败');
-            }
-          }).catch(error => {
-            console.error('登录失败:', error);
-            this.$message.error('登录失败: ' + (error.response?.data?.msg || error.message));
-          }).finally(() => {
-            this.loading = false;
-          });
+            }).catch(error => {
+              console.error('登录失败:', error);
+              this.$message.error('登录失败: ' + (error.response?.data?.msg || error.message));
+            }).finally(() => {
+              this.loading = false;
+            });
         }
       });
     }

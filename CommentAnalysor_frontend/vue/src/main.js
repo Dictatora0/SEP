@@ -12,12 +12,20 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 // 配置axios
-axios.defaults.baseURL = '/api' // 使用代理地址，将由vue.config.js的proxy配置转发到后端
+axios.defaults.baseURL = 'http://localhost:8080' // 指定后端API地址
+axios.defaults.withCredentials = true // 允许发送cookie
+axios.defaults.headers.common['Content-Type'] = 'application/json'
+axios.defaults.headers.common['Accept'] = 'application/json'
 
 // 添加请求拦截器，用于调试
 axios.interceptors.request.use(
   config => {
     console.log(`发送请求到: ${config.url}`, config);
+    // 从sessionStorage获取token
+    const user = JSON.parse(sessionStorage.getItem('user') || '{}')
+    if (user.token) {
+      config.headers['token'] = user.token
+    }
     return config;
   },
   error => {
@@ -27,6 +35,7 @@ axios.interceptors.request.use(
 );
 
 Vue.prototype.$axios = axios
+Vue.prototype.$http = axios
 
 // 响应拦截处理
 axios.interceptors.response.use(

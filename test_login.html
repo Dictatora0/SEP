@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试登录</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #409EFF;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #dcdfe6;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #409EFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f0f9eb;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>测试登录功能</h1>
+        <div class="form-group">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" value="testuser">
+        </div>
+        <div class="form-group">
+            <label for="password">密码:</label>
+            <input type="password" id="password" value="123456">
+        </div>
+        <button onclick="login()">登录</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const resultElement = document.getElementById('result');
+            
+            // 清空之前的结果
+            resultElement.textContent = '正在登录...';
+            resultElement.style.display = 'block';
+            resultElement.style.backgroundColor = '#e6f7ff';
+            
+            // 创建登录请求
+            fetch('http://localhost:8080/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                }),
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('登录响应:', data);
+                
+                if (data.code === '0') {
+                    resultElement.textContent = '登录成功! ' + JSON.stringify(data.data);
+                    resultElement.style.backgroundColor = '#f0f9eb';
+                } else {
+                    resultElement.textContent = '登录失败: ' + data.msg;
+                    resultElement.style.backgroundColor = '#fef0f0';
+                }
+            })
+            .catch(error => {
+                console.error('登录错误:', error);
+                resultElement.textContent = '登录请求失败: ' + error.message;
+                resultElement.style.backgroundColor = '#fef0f0';
+            });
+        }
+    </script>
+</body>
+</html> 

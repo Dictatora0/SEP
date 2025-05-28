@@ -13,6 +13,7 @@ import Person from '../views/Person.vue'
 import CommentCategory from '@/views/CommentCategory.vue'
 import CommentSummary from '@/views/CommentSummary.vue'
 import CommentCompare from '@/views/CommentCompare.vue'
+import CommentCrawler from '@/views/CommentCrawler.vue'
 
 Vue.use(VueRouter)
 
@@ -48,6 +49,12 @@ const routes = [
         name: 'person',
         component: Person,
         meta: { requiresAuth: true }
+      },
+      {
+        path: 'crawler',
+        name: 'crawler',
+        component: CommentCrawler,
+        meta: { requiresAuth: true, title: '评论爬取' }
       }
     ]
   },
